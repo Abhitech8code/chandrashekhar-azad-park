@@ -1,0 +1,2222 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Chandra Shekhar Azad Park | Historic Sanctuary & Botanical Gardens, Prayagraj</title>
+  <meta name="description" content="Official digital heritage portal for Chandra Shekhar Azad Park (Alfred Park), Prayagraj. Book digital entry passes, explore interactive 3D map, historical memorials, Thornhill Mayne library, Allahabad museum exhibits, and botanical gardens." />
+  <meta name="keywords" content="Chandra Shekhar Azad Park, Alfred Park, Prayagraj, Allahabad, Azad Memorial, Thornhill Mayne Library, Allahabad Museum, Victoria Canopy, Company Bagh, Prayagraj Tourism" />
+  <meta name="author" content="Chandra Shekhar Azad Park Administration & Heritage Cell" />
+  <meta name="theme-color" content="#103122" />
+  <link rel="canonical" href="http://localhost:5000/" />
+
+  <!-- PWA Web App Manifest -->
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="Logo.png" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://localhost:5000/" />
+  <meta property="og:title" content="Chandra Shekhar Azad Park • Historic Sanctuary & Botanical Gardens, Prayagraj" />
+  <meta property="og:description" content="Spread across 133 majestic acres, walk the historic soil where revolutionary commander Chandra Shekhar Azad kept his sacred vow of freedom. Explore interactive 3D map, museum relics, and botanical trails." />
+  <meta property="og:image" content="assets/hero.jpg" />
+
+  <!-- Twitter / X -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="http://localhost:5000/" />
+  <meta property="twitter:title" content="Chandra Shekhar Azad Park • Prayagraj" />
+  <meta property="twitter:description" content="Official digital heritage sanctuary portal. Interactive 3D map, audio guide chronicles, instant E-Passes." />
+  <meta property="twitter:image" content="assets/hero.jpg" />
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    "name": "Chandra Shekhar Azad Park",
+    "alternateName": ["Alfred Park", "Company Garden Prayagraj"],
+    "description": "Historical landmark sanctuary and botanical gardens spread across 133 acres in Prayagraj, Uttar Pradesh, commemorating freedom hero Chandra Shekhar Azad.",
+    "url": "http://localhost:5000/",
+    "image": "assets/hero.jpg",
+    "telephone": "+91-532-2460123",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Civil Lines / Georgetown",
+      "addressLocality": "Prayagraj",
+      "addressRegion": "Uttar Pradesh",
+      "postalCode": "211002",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 25.4578,
+      "longitude": 81.8542
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "05:00",
+        "closes": "21:00"
+      }
+    ],
+    "isAccessibleForFree": false
+  }
+  </script>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Cinzel Decorative -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="Logo.png" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Skip to Content for Accessibility -->
+  <a href="#hero" class="skip-link">Skip to main content</a>
+
+  <!-- Offline Network Status Alert Banner -->
+  <div class="offline-banner hidden" id="offlineBanner" role="status" aria-live="polite">
+    <div class="container offline-banner-content">
+      <i class="fa-solid fa-wifi-slash"></i>
+      <span>You are currently browsing offline. Cached heritage information and offline guides remain available.</span>
+    </div>
+  </div>
+
+  <!-- Top Alert / Live Information Bar with Real-Time Clock & Context -->
+  <div class="top-announcement-bar" id="announcementBar">
+    <div class="container bar-content">
+      <div class="live-pill" id="liveStatusContainer" title="Live Park Gate & Operating Status">
+        <span class="pulse-dot"></span>
+        <span id="liveStatusBadge">Open Today • 05:00 AM – 09:00 PM</span>
+      </div>
+
+      <!-- Live Real-Time Clock (Upper Navbar) -->
+      <div class="top-live-clock" id="topLiveClock" title="Prayagraj Real-Time Local Clock (IST)">
+        <i class="fa-regular fa-clock clock-pulse-icon" id="clockIcon"></i>
+        <span class="live-time-display" id="liveTimeDigits">--:--:-- --</span>
+        <span class="live-tz-badge">IST</span>
+        <span class="live-date-display" id="liveDateText">-- --- ----</span>
+      </div>
+
+      <div class="ticker-text" id="liveTickerNotice">
+        <i class="fa-solid fa-bullhorn"></i> <span id="tickerMessage">New eco-friendly battery buggies available at Gate 2 for elderly visitors.</span>
+      </div>
+
+      <!-- Live Temperature & AQI (Navbar Upper Side) -->
+      <div class="top-climate-group" id="topClimateGroup">
+        <!-- Live Temperature Item -->
+        <div class="climate-item top-temp-badge" id="topTempBadge" title="Prayagraj Ground Temperature & Ambient Weather">
+          <i class="fa-solid fa-cloud-showers-heavy climate-icon" id="weatherIcon"></i>
+          <span class="climate-val" id="weatherTemp">25.5°C</span>
+          <span class="climate-desc" id="weatherCondition">Light Rain</span>
+        </div>
+
+        <!-- Live AQI Item -->
+        <div class="climate-item top-aqi-badge aqi-pure" id="topAqiBadge" title="Real-Time Air Quality Index (Prayagraj Ground Sensors)">
+          <i class="fa-solid fa-leaf aqi-icon" id="aqiIcon"></i>
+          <span class="aqi-prefix">AQI</span>
+          <span class="aqi-val" id="aqiNumber">35</span>
+          <span class="aqi-badge-status" id="aqiStatus">Good (Pure)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Sticky Header & Navigation -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="#" class="brand-logo" id="brandLogo" title="Chandra Shekhar Azad Park Prayagraj">
+        <img src="Logo.png" alt="Chandra Shekhar Azad Park Official Seal" class="brand-logo-img" onerror="this.onerror=null; this.src='Logo%20Azad%20Park.png';" />
+        <div class="brand-text">
+          <span class="brand-name">AZAD PARK</span>
+          <span class="brand-sub">PRAYAGRAJ • ESTD 1870</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
+        <a href="#attractions" class="nav-link"><i class="fa-solid fa-monument"></i> <span class="nav-text" data-en="Attractions" data-hi="प्रमुख आकर्षण">Attractions</span></a>
+        <a href="map.html" class="nav-link highlight-map-link"><i class="fa-solid fa-cube"></i> <span class="nav-text" data-en="3D Map" data-hi="3D नक्शा">3D Map</span> <span class="header-pill-badge">3D</span></a>
+        <a href="#gates" class="nav-link"><i class="fa-solid fa-archway"></i> <span class="nav-text" data-en="Gates" data-hi="प्रवेश द्वार">Gates</span></a>
+        <a href="#history" class="nav-link"><i class="fa-solid fa-landmark"></i> <span class="nav-text" data-en="Heritage" data-hi="इतिहास">Heritage</span></a>
+        <a href="#gallery" class="nav-link"><i class="fa-solid fa-images"></i> <span class="nav-text" data-en="Gallery" data-hi="चित्र दीर्घा">Gallery</span></a>
+        <a href="#visitor-guide" class="nav-link"><i class="fa-solid fa-compass"></i> <span class="nav-text" data-en="Visitor Guide" data-hi="मार्गदर्शिका">Visitor Guide</span></a>
+        <a href="#ticketing" class="nav-link"><i class="fa-solid fa-ticket"></i> <span class="nav-text" data-en="Passes & Fees" data-hi="पास एवं शुल्क">Passes & Fees</span></a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Global Search Trigger -->
+        <button class="header-action-btn search-trigger-btn" id="headerSearchBtn" title="Search Portal (Ctrl+K)" aria-label="Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <!-- Bilingual Language Switcher (EN | हिन्दी) -->
+        <button class="header-action-btn lang-toggle-btn" id="langToggleBtn" title="Toggle English / हिन्दी" aria-label="Switch Language">
+          <span class="lang-opt active" id="langEn">EN</span>
+          <span class="lang-sep">|</span>
+          <span class="lang-opt" id="langHi">हिन्दी</span>
+        </button>
+
+        <!-- Theme Mode Toggle -->
+        <button class="header-action-btn theme-toggle-btn" id="themeToggle" title="Toggle Dark/Light Mode" aria-label="Toggle Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <!-- Staff / Admin Portal Modal Trigger -->
+        <button class="header-action-btn admin-trigger-btn hide-tablet-mobile" id="openAdminModalBtn" title="Gate Staff & Admin Dashboard" aria-label="Admin Portal">
+          <i class="fa-solid fa-shield-halved"></i>
+        </button>
+
+        <!-- Verify Pass Trigger -->
+        <button class="verify-btn" id="openVerifyModalBtn" title="Verify Ticket Authenticity">
+          <i class="fa-solid fa-qrcode"></i> <span class="hide-tablet-mobile">Verify Pass</span>
+        </button>
+
+        <!-- Book Pass CTA -->
+        <a href="#ticketing" class="btn btn-primary btn-glow" id="ctaBookHeader">
+          <i class="fa-solid fa-ticket"></i> <span>Book Pass</span>
+        </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobileNavDrawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Slide-in Mobile Navigation Drawer Backdrop -->
+  <div class="mobile-drawer-backdrop" id="mobileDrawerBackdrop" aria-hidden="true"></div>
+
+  <!-- Slide-in Mobile Navigation Drawer (Mobile-First Experience) -->
+  <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation Drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <img src="Logo.png" alt="Azad Park Seal" class="drawer-logo-img" onerror="this.onerror=null; this.src='Logo%20Azad%20Park.png';" />
+        <div>
+          <span class="drawer-title">AZAD PARK</span>
+          <span class="drawer-sub">CHANDRA SHEKHAR AZAD PARK</span>
+        </div>
+      </div>
+      <button class="drawer-close-btn" id="closeMobileNavBtn" aria-label="Close Navigation Menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Search Bar -->
+    <div class="drawer-search-wrap">
+      <div class="drawer-search-input-box" id="drawerSearchBoxTrigger">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="drawerSearchInput" placeholder="Search landmarks, history, gates, rules..." aria-label="Search" />
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Language Selector -->
+    <div class="drawer-lang-row">
+      <span class="drawer-lang-lbl"><i class="fa-solid fa-language"></i> Language / भाषा:</span>
+      <div class="drawer-lang-btns">
+        <button type="button" class="drawer-lang-btn active" data-lang="en">English</button>
+        <button type="button" class="drawer-lang-btn" data-lang="hi">हिन्दी</button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation Links -->
+    <nav class="drawer-nav-list" id="drawerNavList">
+      <a href="#hero" class="drawer-nav-item"><i class="fa-solid fa-house"></i> <span>Home / मुख्य पृष्ठ</span></a>
+      <a href="map.html" class="drawer-nav-item drawer-nav-featured"><i class="fa-solid fa-cube"></i> <span>3D Interactive Map / 3D नक्शा</span> <span class="drawer-badge">3D MODEL</span></a>
+      <a href="#attractions" class="drawer-nav-item"><i class="fa-solid fa-monument"></i> <span>Attractions / प्रमुख आकर्षण</span></a>
+      <a href="#gates" class="drawer-nav-item"><i class="fa-solid fa-archway"></i> <span>Gates & Access / प्रवेश द्वार</span></a>
+      <a href="#history" class="drawer-nav-item"><i class="fa-solid fa-landmark"></i> <span>Heritage & Audio Guide / इतिहास</span></a>
+      <a href="#gallery" class="drawer-nav-item"><i class="fa-solid fa-images"></i> <span>Photo Gallery / चित्र दीर्घा</span></a>
+      <a href="#visitor-guide" class="drawer-nav-item"><i class="fa-solid fa-compass"></i> <span>Visitor Guide / मार्गदर्शिका</span></a>
+      <a href="#how-to-reach" class="drawer-nav-item"><i class="fa-solid fa-route"></i> <span>How to Reach / कैसे पहुँचें</span></a>
+      <a href="#nearby" class="drawer-nav-item"><i class="fa-solid fa-map-pin"></i> <span>Nearby Places / आस-पास</span></a>
+      <a href="#ticketing" class="drawer-nav-item"><i class="fa-solid fa-ticket"></i> <span>Passes & Fees / पास एवं टिकट</span></a>
+      <a href="#events" class="drawer-nav-item"><i class="fa-solid fa-calendar-days"></i> <span>Events & Yoga / कार्यक्रम</span></a>
+      <a href="#reviews" class="drawer-nav-item"><i class="fa-solid fa-comments"></i> <span>Visitor Reviews / समीक्षाएं</span></a>
+      <a href="#adminPortal" class="drawer-nav-item" id="drawerAdminTrigger"><i class="fa-solid fa-shield-halved"></i> <span>Staff & Admin Portal / प्रशासनिक पोर्टल</span></a>
+    </nav>
+
+    <!-- Mobile Drawer Action Buttons -->
+    <div class="drawer-footer-actions">
+      <a href="#ticketing" class="btn btn-primary btn-block" id="drawerBookBtn"><i class="fa-solid fa-ticket"></i> Book Digital Entry Pass</a>
+      <button type="button" class="btn btn-secondary btn-block" id="drawerVerifyBtn"><i class="fa-solid fa-qrcode"></i> Verify E-Pass</button>
+      <div class="drawer-helpdesk-info">
+        <i class="fa-solid fa-headset"></i> <span>Helpline: +91 532 246 0123</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Hero Section with Panorama & Ambient Glow -->
+  <section class="hero-section" id="hero">
+    <div class="hero-backdrop" style="background-image: url('assets/hero.jpg');"></div>
+    <div class="hero-particles" id="heroParticles" aria-hidden="true">
+      <span class="hero-particle p1"></span>
+      <span class="hero-particle p2"></span>
+      <span class="hero-particle p3"></span>
+      <span class="hero-particle p4"></span>
+      <span class="hero-particle p5"></span>
+      <span class="hero-particle p6"></span>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-container hero-split-layout">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span class="tribute-badge"><i class="fa-solid fa-star-of-david"></i> Amar Shaheed Memorial Sanctuary</span>
+          <span class="district-badge">Prayagraj, Uttar Pradesh</span>
+        </div>
+        <h1 class="hero-title">
+          Chandra Shekhar <br />
+          <span class="text-gradient">Azad Park</span>
+        </h1>
+        <p class="hero-description">
+          Spread across 133 majestic emerald acres, walk the historic soil where Chandra Shekhar Azad kept his sacred vow of freedom. Explore Victorian Gothic stone monuments, the world-renowned Allahabad Museum, rare botanical conservatories, and serene dawn jogging trails.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#ticketing" class="btn btn-primary btn-large btn-glow">
+            <i class="fa-solid fa-id-card-clip"></i> Book E-Pass & Tickets
+          </a>
+          <a href="#map-section" class="btn btn-glass btn-large">
+            <i class="fa-solid fa-compass"></i> Explore 3D Park Map
+          </a>
+          <button class="btn btn-glass-audio" id="heroPlayAudioBtn">
+            <i class="fa-solid fa-volume-high"></i> Listen to Audio Chronicle
+          </button>
+        </div>
+
+        <!-- Quick Stats Cards in Hero -->
+        <div class="hero-stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-tree"></i></div>
+            <div class="stat-info">
+              <span class="stat-number">133</span>
+              <span class="stat-unit">Acres Area</span>
+              <span class="stat-label">Largest urban green haven</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-person-walking"></i></div>
+            <div class="stat-info">
+              <span class="stat-number">2.5</span>
+              <span class="stat-unit">Kilometers</span>
+              <span class="stat-label">Natural clay jogging loop</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+            <div class="stat-info">
+              <span class="stat-number">125K+</span>
+              <span class="stat-unit">Rare Volumes</span>
+              <span class="stat-label">Thornhill Mayne Library</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="stat-info">
+              <span class="stat-number">1931</span>
+              <span class="stat-unit">Historic Stand</span>
+              <span class="stat-label">Azad's eternal pledge</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side: Official Park Emblem Showcase -->
+      <div class="hero-emblem-showcase">
+        <div class="emblem-card-glow">
+          <div class="emblem-card">
+            <div class="emblem-seal-ring">
+              <img src="Logo.png" alt="Chandra Shekhar Azad Park Official Emblem" class="hero-seal-large" onerror="this.onerror=null; this.src='Logo%20Azad%20Park.png';" />
+            </div>
+            <div class="emblem-caption">
+              <span class="emblem-hindi">अमर शहीद चन्द्रशेखर आज़ाद पार्क</span>
+              <span class="emblem-sub">COMPANY GARDEN • ALFRED PARK</span>
+              <span class="emblem-loc"><i class="fa-solid fa-location-dot"></i> Prayagraj, Uttar Pradesh, India</span>
+            </div>
+            <div class="emblem-seal-ribbon">
+              <i class="fa-solid fa-award"></i> Official Sanctuary Seal
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Live Park At-A-Glance Cards -->
+  <section class="glance-section">
+    <div class="container glance-grid">
+      
+      <div class="glance-card timings-card">
+        <div class="glance-header">
+          <div class="glance-icon"><i class="fa-regular fa-clock"></i></div>
+          <div>
+            <h3>Park Timings</h3>
+            <p class="subtitle">Updated daily schedule</p>
+          </div>
+        </div>
+        <ul class="schedule-list">
+          <li>
+            <span>Morning Walkers</span>
+            <strong>05:00 AM – 08:30 AM</strong>
+          </li>
+          <li>
+            <span>General Visitors</span>
+            <strong>08:30 AM – 09:00 PM</strong>
+          </li>
+          <li>
+            <span>Allahabad Museum</span>
+            <strong>10:30 AM – 04:30 PM (Mon Closed)</strong>
+          </li>
+          <li>
+            <span>Twilight Laser & Fountain</span>
+            <strong>07:00 PM & 07:45 PM Daily</strong>
+          </li>
+        </ul>
+      </div>
+
+      <div class="glance-card weather-card">
+        <div class="glance-header">
+          <div class="glance-icon"><i class="fa-solid fa-cloud-sun"></i></div>
+          <div>
+            <h3>Sanctuary Climate</h3>
+            <p class="subtitle">Live sensors on ground</p>
+          </div>
+        </div>
+        <div class="weather-metrics">
+          <div class="metric-main">
+            <span class="temp" id="metricTemp">25.5°C</span>
+            <span class="cond" id="metricCond">Light Rain Showers</span>
+          </div>
+          <div class="metric-items">
+            <div class="m-item">
+              <span class="m-label">Air Quality Index</span>
+              <span class="m-val aqi-good" id="metricAqi"><i class="fa-solid fa-leaf"></i> 35 (Pure)</span>
+            </div>
+            <div class="m-item">
+              <span class="m-label">Humidity</span>
+              <span class="m-val" id="metricHumidity">93%</span>
+            </div>
+            <div class="m-item">
+              <span class="m-label">Wind Speed</span>
+              <span class="m-val" id="metricWind">23 km/h</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glance-card perks-card">
+        <div class="glance-header">
+          <div class="glance-icon"><i class="fa-solid fa-wheelchair"></i></div>
+          <div>
+            <h3>Visitor Services</h3>
+            <p class="subtitle">Accessible & Green amenities</p>
+          </div>
+        </div>
+        <div class="perks-tags">
+          <span class="perk-tag"><i class="fa-solid fa-bolt"></i> EV Buggy Shuttles</span>
+          <span class="perk-tag"><i class="fa-solid fa-wheelchair"></i> Wheelchair Ramps</span>
+          <span class="perk-tag"><i class="fa-solid fa-faucet-detergent"></i> RO Water Kiosks</span>
+          <span class="perk-tag"><i class="fa-solid fa-wifi"></i> Free BSNL Wi-Fi</span>
+          <span class="perk-tag"><i class="fa-solid fa-shield"></i> 24x7 Security & CCTV</span>
+          <span class="perk-tag"><i class="fa-solid fa-ban"></i> Zero Plastic Zone</span>
+        </div>
+        <div class="helpline-callout">
+          <i class="fa-solid fa-phone-volume"></i>
+          <span>Emergency Helpline: <strong>+91 532 246 0123</strong></span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Attraction Catalog Section -->
+  <section class="section-container attractions-section" id="attractions">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle">Heritage, Architecture & Nature</span>
+        <h2 class="section-title">Historic Monuments & Highlights</h2>
+        <p class="section-desc">
+          Discover the soul of Prayagraj. From freedom movement landmarks and 19th-century gothic reading rooms to lush fragrant rose beds.
+        </p>
+
+        <!-- Category Filters -->
+        <div class="filter-pills" id="attractionFilters">
+          <button class="filter-btn active" data-category="all">All Highlights</button>
+          <button class="filter-btn" data-category="monument">Freedom Memorials</button>
+          <button class="filter-btn" data-category="architecture">Colonial Architecture</button>
+          <button class="filter-btn" data-category="museum">Museums & Culture</button>
+          <button class="filter-btn" data-category="nature">Flora & Gardens</button>
+        </div>
+      </div>
+
+      <div class="attractions-grid" id="attractionsGrid">
+        <!-- Injected dynamically by app.js from Backend API -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Park Map & Wayfinder -->
+  <section class="section-container map-section" id="map-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle">अमर शहीद चन्द्रशेखर आज़ाद पार्क</span>
+        <h2 class="section-title">EXPLORE CHANDRASHEKHAR AZAD PARK</h2>
+        <p class="section-desc">
+          “Discover the park, its heritage, landmarks and stories through an interactive 3D experience.”
+        </p>
+        <div style="margin-top: 16px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+          <a href="map.html" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 18px rgba(197, 155, 76, 0.45); font-weight: 700;">
+            <i class="fa-solid fa-cube"></i> Open 3D Interactive Heritage Map (Isometric Model)
+          </a>
+        </div>
+      </div>
+
+      <div class="map-wrapper" style="position: relative;">
+        <!-- Subtle Disclaimer Badge -->
+        <div style="position: absolute; top: 12px; left: 12px; z-index: 5; background: rgba(12, 32, 23, 0.88); border: 1px solid rgba(197, 155, 76, 0.35); border-radius: 20px; padding: 4px 12px; font-size: 0.72rem; color: #d1dfd5; display: inline-flex; align-items: center; gap: 6px;">
+          <i class="fa-solid fa-circle-info" style="color: #c59b4c;"></i>
+          <span>Illustrative layout — not to scale. Gate locations pending verification</span>
+        </div>
+
+        <!-- SVG Vector Map Graphic (Strictly 6 verified landmarks) -->
+        <div class="svg-map-container" id="svgMapContainer">
+          <svg viewBox="0 0 1000 650" class="park-svg-map" id="parkSvg" role="region" aria-label="Verified Park Map">
+            <defs>
+              <radialGradient id="mapGrassGrad" cx="50%" cy="50%" r="55%">
+                <stop offset="0%" stop-color="#143628" />
+                <stop offset="70%" stop-color="#0f291e" />
+                <stop offset="100%" stop-color="#0a1d15" />
+              </radialGradient>
+              <linearGradient id="mapBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#2d5e46" />
+                <stop offset="50%" stop-color="#1b402f" />
+                <stop offset="100%" stop-color="#2d5e46" />
+              </linearGradient>
+            </defs>
+
+            <!-- Base Park Boundary Shape -->
+            <polygon points="240,40 760,40 940,200 940,460 760,610 240,610 60,460 60,200" fill="url(#mapGrassGrad)" stroke="url(#mapBorderGrad)" stroke-width="3" stroke-linejoin="round" />
+
+            <!-- Perimeter Promenade (No distance label) -->
+            <polygon points="250,55 750,55 925,205 925,455 750,595 250,595 75,455 75,205" fill="none" stroke="#204b36" stroke-width="1.8" stroke-dasharray="6,4" />
+
+            <!-- Cardinal Internal Heritage Avenues -->
+            <line x1="500" y1="45" x2="500" y2="605" stroke="#254d39" stroke-width="5" stroke-linecap="round" />
+            <line x1="500" y1="45" x2="500" y2="605" stroke="#36644d" stroke-width="1.5" stroke-dasharray="8,6" />
+            <line x1="65" y1="330" x2="935" y2="330" stroke="#254d39" stroke-width="5" stroke-linecap="round" />
+            <line x1="65" y1="330" x2="935" y2="330" stroke="#36644d" stroke-width="1.5" stroke-dasharray="8,6" />
+
+            <!-- Central Rotary -->
+            <circle cx="500" cy="330" r="70" fill="#112d21" stroke="#2c5a43" stroke-width="2" />
+            <circle cx="500" cy="330" r="54" fill="#133627" stroke="#3e6f55" stroke-width="1.2" stroke-dasharray="5,4" />
+
+            <!-- 1. Madan Mohan Malviya Stadium -->
+            <g class="map-landmark-shape" data-id="malviya-stadium" cursor="pointer">
+              <rect x="70" y="65" width="310" height="90" rx="10" fill="#133628" stroke="#d8c8b0" stroke-width="1.5" />
+              <text x="225" y="105" text-anchor="middle" fill="#fdfaf3" font-size="14" font-weight="600">Madan Mohan Malviya</text>
+              <text x="225" y="128" text-anchor="middle" fill="#fdfaf3" font-size="13.5" font-weight="600">Stadium</text>
+            </g>
+
+            <!-- 2. Allahabad Public Library (Thornhill Mayne Memorial) -->
+            <g class="map-landmark-shape" data-id="allahabad-public-library" cursor="pointer">
+              <rect x="580" y="75" width="340" height="96" rx="10" fill="#133628" stroke="#d8c8b0" stroke-width="1.5" />
+              <text x="750" y="115" text-anchor="middle" fill="#fdfaf3" font-size="14" font-weight="600">Allahabad Public Library</text>
+              <text x="750" y="140" text-anchor="middle" fill="#e2dac8" font-size="12" font-weight="500">(Thornhill Mayne Memorial)</text>
+            </g>
+
+            <!-- 3. Chandrashekhar Azad Memorial -->
+            <g class="map-landmark-shape" data-id="azad-memorial" cursor="pointer">
+              <rect x="75" y="295" width="300" height="92" rx="10" fill="#133628" stroke="#d8c8b0" stroke-width="1.5" />
+              <text x="225" y="335" text-anchor="middle" fill="#fdfaf3" font-size="14" font-weight="600">Chandrashekhar Azad</text>
+              <text x="225" y="358" text-anchor="middle" fill="#fdfaf3" font-size="13.5" font-weight="600">Memorial</text>
+            </g>
+
+            <!-- 4. Victoria Memorial -->
+            <g class="map-landmark-shape" data-id="victoria-memorial" cursor="pointer">
+              <rect x="380" y="285" width="240" height="88" rx="10" fill="#133628" stroke="#d8c8b0" stroke-width="1.5" />
+              <text x="500" y="335" text-anchor="middle" fill="#fdfaf3" font-size="14" font-weight="600">Victoria Memorial</text>
+            </g>
+
+            <!-- 5. Allahabad Museum -->
+            <g class="map-landmark-shape" data-id="allahabad-museum" cursor="pointer">
+              <rect x="645" y="305" width="265" height="90" rx="10" fill="#133628" stroke="#d8c8b0" stroke-width="1.5" />
+              <text x="777" y="355" text-anchor="middle" fill="#fdfaf3" font-size="14" font-weight="600">Allahabad Museum</text>
+            </g>
+
+            <!-- 6. Prayag Sangeet Samiti -->
+            <g class="map-landmark-shape" data-id="prayag-sangeet-samiti" cursor="pointer">
+              <rect x="185" y="475" width="300" height="92" rx="10" fill="#133628" stroke="#d8c8b0" stroke-width="1.5" />
+              <text x="335" y="515" text-anchor="middle" fill="#fdfaf3" font-size="14" font-weight="600">Prayag Sangeet</text>
+              <text x="335" y="538" text-anchor="middle" fill="#fdfaf3" font-size="13.5" font-weight="600">Samiti</text>
+            </g>
+
+            <!-- Interactive Hotspot Pins (Only 6 verified) -->
+            <g class="map-pin" data-id="malviya-stadium" transform="translate(225, 65)" cursor="pointer" role="button" tabindex="0" aria-label="Madan Mohan Malviya Stadium">
+              <circle r="16" fill="#081610" stroke="#c59b4c" stroke-width="2" />
+              <circle r="12" fill="#c59b4c" />
+              <text y="4" text-anchor="middle" fill="#081610" font-size="10" font-weight="bold">1</text>
+            </g>
+
+            <g class="map-pin" data-id="allahabad-public-library" transform="translate(750, 75)" cursor="pointer" role="button" tabindex="0" aria-label="Allahabad Public Library">
+              <circle r="16" fill="#081610" stroke="#c59b4c" stroke-width="2" />
+              <circle r="12" fill="#c59b4c" />
+              <text y="4" text-anchor="middle" fill="#081610" font-size="10" font-weight="bold">2</text>
+            </g>
+
+            <g class="map-pin pin-active" data-id="azad-memorial" transform="translate(225, 295)" cursor="pointer" role="button" tabindex="0" aria-label="Chandrashekhar Azad Memorial">
+              <circle r="16" fill="#081610" stroke="#c59b4c" stroke-width="2" />
+              <circle r="12" fill="#c59b4c" />
+              <text y="4" text-anchor="middle" fill="#081610" font-size="10" font-weight="bold">3</text>
+            </g>
+
+            <g class="map-pin" data-id="victoria-memorial" transform="translate(500, 285)" cursor="pointer" role="button" tabindex="0" aria-label="Victoria Memorial">
+              <circle r="16" fill="#081610" stroke="#c59b4c" stroke-width="2" />
+              <circle r="12" fill="#c59b4c" />
+              <text y="4" text-anchor="middle" fill="#081610" font-size="10" font-weight="bold">4</text>
+            </g>
+
+            <g class="map-pin" data-id="allahabad-museum" transform="translate(777, 305)" cursor="pointer" role="button" tabindex="0" aria-label="Allahabad Museum">
+              <circle r="16" fill="#081610" stroke="#c59b4c" stroke-width="2" />
+              <circle r="12" fill="#c59b4c" />
+              <text y="4" text-anchor="middle" fill="#081610" font-size="10" font-weight="bold">5</text>
+            </g>
+
+            <g class="map-pin" data-id="prayag-sangeet-samiti" transform="translate(335, 475)" cursor="pointer" role="button" tabindex="0" aria-label="Prayag Sangeet Samiti">
+              <circle r="16" fill="#081610" stroke="#c59b4c" stroke-width="2" />
+              <circle r="12" fill="#c59b4c" />
+              <text y="4" text-anchor="middle" fill="#081610" font-size="10" font-weight="bold">6</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Interactive Map Info Sidebar Card -->
+        <div class="map-sidebar" id="mapSidebar">
+          <div class="sidebar-spot-details" id="sidebarDetails">
+            <div class="spot-title-block">
+              <h3>Chandrashekhar Azad Memorial</h3>
+              <span class="hindi">अमर शहीद चंद्रशेखर आज़ाद स्मारक</span>
+            </div>
+            <p class="spot-desc-text">
+              The sacred memorial marks the site where revolutionary commander Chandra Shekhar Azad made his supreme sacrifice on February 27, 1931, during an armed encounter with British colonial police. A revered bronze statue and the sacred martyrdom site honor his immortal legacy inside the sanctuary.
+            </p>
+            <div style="font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border-subtle); padding-top: 8px;">
+              <i class="fa-regular fa-clock"></i> Visiting Hours: Park open daily 05:00 AM – 09:00 PM (Details pending verification for specific enclosure)
+            </div>
+            <div style="margin-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+              <a href="https://www.google.com/maps/search/?api=1&query=Chandrashekhar+Azad+Memorial+Prayagraj" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-block">
+                <i class="fa-solid fa-diamond-turn-right"></i> Get directions
+              </a>
+              <a href="map.html?spot=azad-memorial" class="btn btn-secondary btn-block">
+                <i class="fa-solid fa-cube"></i> Open In 3D Interactive Heritage Map
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Park Gates & Access Points Directory -->
+  <section class="section-container gates-section" id="gates">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle">Sanctuary Access Points • प्रवेश द्वार</span>
+        <h2 class="section-title">Park Gates & Entry Portals</h2>
+        <p class="section-desc">
+          Four designated access gates encircle the 133-acre perimeter, equipped with wheelchair ramps, dedicated parking zones, and electric buggy shuttles for visitors.
+        </p>
+      </div>
+
+      <div class="gates-grid" id="gatesGrid">
+        <!-- Gate 1 -->
+        <article class="gate-card">
+          <div class="gate-card-header">
+            <span class="gate-badge">GATE 01</span>
+            <span class="gate-road-tag"><i class="fa-solid fa-road"></i> Kamla Nehru Road</span>
+          </div>
+          <div class="gate-card-body">
+            <h3 class="gate-title">Amar Shaheed Memorial Gate</h3>
+            <span class="gate-hindi-title">अमर शहीद स्मारक द्वार (उत्तर)</span>
+            <p class="gate-desc">
+              Primary ceremonial entrance offering direct access to the Chandrashekhar Azad Bronze Statue, the sacred martyrdom Jamun tree, and the central boulevard.
+            </p>
+            <div class="gate-facilities-tray">
+              <span class="facility-chip"><i class="fa-solid fa-car"></i> Car Parking</span>
+              <span class="facility-chip chip-ev"><i class="fa-solid fa-bolt"></i> EV Buggy Terminal</span>
+              <span class="facility-chip"><i class="fa-solid fa-wheelchair"></i> Wheelchair Ramp</span>
+            </div>
+          </div>
+          <div class="gate-card-footer">
+            <a href="https://www.google.com/maps/search/?api=1&query=Gate+1+Chandrashekhar+Azad+Park+Prayagraj" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <i class="fa-solid fa-diamond-turn-right"></i> Directions
+            </a>
+            <a href="map.html?spot=gate-1" class="btn btn-glass btn-sm">
+              <i class="fa-solid fa-cube"></i> View on 3D Map
+            </a>
+          </div>
+        </article>
+
+        <!-- Gate 2 -->
+        <article class="gate-card">
+          <div class="gate-card-header">
+            <span class="gate-badge">GATE 02</span>
+            <span class="gate-road-tag"><i class="fa-solid fa-road"></i> Kutchery Road</span>
+          </div>
+          <div class="gate-card-body">
+            <h3 class="gate-title">Administrative & Helpdesk Gate</h3>
+            <span class="gate-hindi-title">प्रशासनिक एवं सहायता केन्द्र द्वार (पूर्व)</span>
+            <p class="gate-desc">
+              The primary visitor services portal housing the central manual ticketing counter, official Lost & Found helpdesk, sanitised restrooms, and first-aid post.
+            </p>
+            <div class="gate-facilities-tray">
+              <span class="facility-chip"><i class="fa-solid fa-ticket"></i> Ticket Counter</span>
+              <span class="facility-chip chip-ev"><i class="fa-solid fa-bolt"></i> Buggy Shuttle Stand</span>
+              <span class="facility-chip"><i class="fa-solid fa-kit-medical"></i> First Aid</span>
+            </div>
+          </div>
+          <div class="gate-card-footer">
+            <a href="https://www.google.com/maps/search/?api=1&query=Gate+2+Kutchery+Road+Azad+Park+Prayagraj" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <i class="fa-solid fa-diamond-turn-right"></i> Directions
+            </a>
+            <a href="map.html?spot=gate-2" class="btn btn-glass btn-sm">
+              <i class="fa-solid fa-cube"></i> View on 3D Map
+            </a>
+          </div>
+        </article>
+
+        <!-- Gate 3 -->
+        <article class="gate-card">
+          <div class="gate-card-header">
+            <span class="gate-badge">GATE 03</span>
+            <span class="gate-road-tag"><i class="fa-solid fa-road"></i> Thornhill Road</span>
+          </div>
+          <div class="gate-card-body">
+            <h3 class="gate-title">Library & Museum Gateway</h3>
+            <span class="gate-hindi-title">पुस्तकालय एवं संग्रहालय द्वार (पश्चिम)</span>
+            <p class="gate-desc">
+              Direct access point for researchers, students, and culture enthusiasts visiting Thornhill Mayne Public Library (1864) and the Allahabad National Museum galleries.
+            </p>
+            <div class="gate-facilities-tray">
+              <span class="facility-chip"><i class="fa-solid fa-book-bookmark"></i> Library Access</span>
+              <span class="facility-chip"><i class="fa-solid fa-building-columns"></i> Museum Ramps</span>
+              <span class="facility-chip"><i class="fa-solid fa-motorcycle"></i> Two-Wheeler Bay</span>
+            </div>
+          </div>
+          <div class="gate-card-footer">
+            <a href="https://www.google.com/maps/search/?api=1&query=Thornhill+Road+Gate+Azad+Park+Prayagraj" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <i class="fa-solid fa-diamond-turn-right"></i> Directions
+            </a>
+            <a href="map.html?spot=allahabad-public-library" class="btn btn-glass btn-sm">
+              <i class="fa-solid fa-cube"></i> View on 3D Map
+            </a>
+          </div>
+        </article>
+
+        <!-- Gate 4 -->
+        <article class="gate-card">
+          <div class="gate-card-header">
+            <span class="gate-badge">GATE 04</span>
+            <span class="gate-road-tag"><i class="fa-solid fa-road"></i> Dayanand Marg</span>
+          </div>
+          <div class="gate-card-body">
+            <h3 class="gate-title">Civil Lines South Botanical Gate</h3>
+            <span class="gate-hindi-title">सिविल लाइन्स वनस्पति उद्यान द्वार (दक्षिण)</span>
+            <p class="gate-desc">
+              Scenic southern entrance opening directly onto the 15-acre Heritage Rose Conservatory, dawn yoga assembly lawns, and the perimeter natural clay jogging track.
+            </p>
+            <div class="gate-facilities-tray">
+              <span class="facility-chip"><i class="fa-solid fa-person-running"></i> Jogging Track</span>
+              <span class="facility-chip"><i class="fa-solid fa-seedling"></i> Rose Conservatory</span>
+              <span class="facility-chip"><i class="fa-solid fa-bicycle"></i> Cycle Stands</span>
+            </div>
+          </div>
+          <div class="gate-card-footer">
+            <a href="https://www.google.com/maps/search/?api=1&query=Civil+Lines+South+Gate+Azad+Park+Prayagraj" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <i class="fa-solid fa-diamond-turn-right"></i> Directions
+            </a>
+            <a href="map.html?spot=botanical-rose-gardens" class="btn btn-glass btn-sm">
+              <i class="fa-solid fa-cube"></i> View on 3D Map
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Heritage Chronicle & Audio Tour Section -->
+  <section class="section-container heritage-section" id="history">
+    <div class="container">
+      <div class="heritage-split">
+        
+        <div class="heritage-visual">
+          <div class="memorial-gallery-tabs">
+            <button type="button" class="gallery-tab-btn active" id="tabStatue" onclick="switchMemorialView('statue')">
+              <i class="fa-solid fa-monument"></i> अमर शहीद प्रतिमा (Martyrdom Statue)
+            </button>
+            <button type="button" class="gallery-tab-btn" id="tabHomage" onclick="switchMemorialView('homage')">
+              <i class="fa-solid fa-hands-praying"></i> राष्ट्रीय नमन (National Homage)
+            </button>
+            <button type="button" class="gallery-tab-btn" id="tabExploreModal" onclick="openAttractionModal('azad-memorial')" title="Open High Resolution Dual View">
+              <i class="fa-solid fa-expand"></i> दोनों HD में देखें
+            </button>
+          </div>
+
+          <div class="memorial-image-frame" id="memorialFrame">
+            <img src="assets/azad_statue_martyrdom.jpg" alt="Chandra Shekhar Azad Sacred Martyrdom Statue with Inscription" class="memorial-img hd-memorial-img" id="memorialMainImg" />
+            
+            <div class="hd-badge">
+              <i class="fa-solid fa-certificate"></i> <span id="hdBadgeText">मूल प्रतिमा स्थल • Sacred Martyrdom Site</span>
+            </div>
+          </div>
+
+          <!-- Dedicated Regal Quote Card (Unobstructed photo viewing) -->
+          <div class="memorial-quote-card" id="memorialQuoteCard">
+            <i class="fa-solid fa-quote-left quote-icon-corner"></i>
+            <p class="quote-text" id="memorialQuoteText">
+              दुश्मनों की गोलियों का हम सामना करेंगे, <br />
+              आज़ाद ही रहे हैं, आज़ाद ही रहेंगे!
+            </p>
+            <span class="quote-author" id="memorialQuoteAuthor">— अमर शहीद चंद्रशेखर आज़ाद (२७ फ़रवरी १९३१)</span>
+          </div>
+
+          <div class="memorial-thumbnails-row">
+            <div class="thumb-card active" onclick="switchMemorialView('statue')" id="thumbStatue">
+              <img src="assets/azad_statue_martyrdom.jpg" alt="Azad Statue Thumbnail" />
+              <div class="thumb-info">
+                <strong>पवित्र प्रतिमा एवं शिलालेख</strong>
+                <span>Sacred Martyrdom Site & Inscription</span>
+              </div>
+            </div>
+            <div class="thumb-card" onclick="switchMemorialView('homage')" id="thumbHomage">
+              <img src="assets/azad_memorial_homage.jpg" alt="PM Homage Thumbnail" />
+              <div class="thumb-info">
+                <strong>राष्ट्रीय नमन • पुष्पांजलि</strong>
+                <span>Homage by Prime Minister</span>
+              </div>
+            </div>
+            <div class="thumb-card" onclick="switchMemorialView('avenue')" id="thumbAvenue">
+              <img src="assets/azad_memorial_avenue.jpg" alt="Shaheed Vatika Avenue Thumbnail" />
+              <div class="thumb-info">
+                <strong>शहीद वाटिका मार्ग</strong>
+                <span>Grand Promenade Avenue</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="heritage-text">
+          <span class="section-subtitle">Sacred Freedom Soil</span>
+          <h2 class="section-title">The Immortal Stand of Alfred Park</h2>
+          <p>
+            On the morning of <strong>February 27, 1931</strong>, revolutionary commander Chandra Shekhar Azad met Sukhdev Raj in Alfred Park to coordinate future actions for the Hindustan Socialist Republican Association (HSRA). Betrayed to the British colonial police, the park was cordoned off by armed constables led by CID Chief J.R.H. Nott-Bower.
+          </p>
+          <p>
+            Taking cover behind an ancient jamun tree, Azad bravely returned fire with his famed Colt pistol, enabling Sukhdev to safely escape. Fighting single-handedly until his final bullet remained, Azad placed the muzzle to his own temple and pulled the trigger—immortalizing his vow that the British crown would never take him alive.
+          </p>
+
+          <!-- Sacred Inscription Plaque Card -->
+          <div class="sacred-inscription-card">
+            <div class="inscription-header">
+              <i class="fa-solid fa-scroll"></i>
+              <span>प्रतिमा पर अंकित मूल ऐतिहासिक शिलालेख</span>
+            </div>
+            <p class="inscription-text">
+              “भारतीय स्वतंत्रता संग्राम के अमर सेनानी <br />
+              <strong>चन्द्र शेखर आजाद</strong><br />
+              जो विदेशी सत्ता के साथ सशस्त्र संघर्ष में गोली से आहत होने के कारण <strong>२७ फ़रवरी १९३१</strong> को इसी स्थान पर वीरगति को प्राप्त हुए थे।”
+            </p>
+          </div>
+
+          <!-- Interactive Audio Narration Box -->
+          <div class="audio-tour-card" id="audioTourBox">
+            <div class="audio-header">
+              <div class="audio-icon"><i class="fa-solid fa-headphones"></i></div>
+              <div style="flex: 1;">
+                <h4>Official Heritage Audio Guide</h4>
+                <p>Authentic History Voice Chronicle • Hindi & English</p>
+              </div>
+              <div class="audio-lang-switch">
+                <button type="button" class="audio-lang-btn active" id="audioLangEn" data-lang="en">
+                  <i class="fa-solid fa-earth-americas"></i> English
+                </button>
+                <button type="button" class="audio-lang-btn" id="audioLangHi" data-lang="hi">
+                  <i class="fa-solid fa-om"></i> हिन्दी
+                </button>
+              </div>
+            </div>
+            
+            <!-- Real HTML5 Audio Element -->
+            <audio id="heritageAudioElement" preload="metadata" src="assets/azad_chronicle_english.mp3"></audio>
+
+            <div class="audio-player-controls">
+              <button class="audio-play-btn" id="playAudioBtn" title="Play / Pause Audio Chronicle" aria-label="Play or Pause Narration">
+                <i class="fa-solid fa-play" id="audioPlayIcon"></i>
+              </button>
+              <div class="audio-progress-bar" id="audioProgressContainer" title="Click or drag to seek">
+                <div class="progress-fill" id="audioProgress"></div>
+              </div>
+              <span class="audio-time" id="audioTime">00:00 / 02:05</span>
+              <button class="audio-mute-btn" id="audioMuteBtn" title="Mute / Unmute" aria-label="Mute or Unmute Audio">
+                <i class="fa-solid fa-volume-high" id="audioMuteIcon"></i>
+              </button>
+            </div>
+
+            <!-- Dynamic Sound Waveform Indicator -->
+            <div class="audio-waveform-container" id="audioWaveform">
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <div class="wave-bar"></div>
+              <span class="wave-status-text" id="waveStatusText">Real Historical Voice Narration</span>
+            </div>
+
+            <div class="audio-caption-container">
+              <div class="audio-caption-header">
+                <span class="audio-badge" id="audioChapterBadge"><i class="fa-solid fa-monument"></i> Alfred Park, 27 Feb 1931</span>
+                <span class="audio-sound-hint"><i class="fa-solid fa-volume-low"></i> High-definition voice</span>
+              </div>
+              <p class="audio-caption" id="audioCaption">
+                Click <strong>Play</strong> to listen to the authentic chronicle of Chandra Shekhar Azad’s legendary last stand at Alfred Park on 27 February 1931.
+              </p>
+            </div>
+          </div>
+
+          <div class="heritage-features-list">
+            <div class="h-feature">
+              <i class="fa-solid fa-tree-deciduous"></i>
+              <div>
+                <strong>The Sacred Jamun Tree Memorial</strong>
+                <span>Preserved sanctuary where freedom seekers offer floral tributes daily.</span>
+              </div>
+            </div>
+            <div class="h-feature">
+              <i class="fa-solid fa-gun"></i>
+              <div>
+                <strong>Azad's Historic Colt Pistol</strong>
+                <span>Preserved in the Central Gallery of the adjacent Allahabad Museum.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Heritage Photo Gallery & Media Archive -->
+  <section class="section-container gallery-section" id="gallery">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle">Visual Archives • चित्र वीथिका</span>
+        <h2 class="section-title">Heritage Photo Gallery</h2>
+        <p class="section-desc">
+          Explore curated photographic glimpses of the sanctified memorial, Gothic colonial landmarks, rare botanical flora, and evening illumination at Azad Park.
+        </p>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="gallery-filters-tray" id="galleryFilterTray" role="tablist" aria-label="Photo Categories">
+        <button type="button" class="gallery-filter-chip active" data-filter="all" role="tab" aria-selected="true">
+          <i class="fa-solid fa-border-all"></i> All Photos (9)
+        </button>
+        <button type="button" class="gallery-filter-chip" data-filter="memorial" role="tab" aria-selected="false">
+          <i class="fa-solid fa-monument"></i> Memorial & Martyrdom
+        </button>
+        <button type="button" class="gallery-filter-chip" data-filter="architecture" role="tab" aria-selected="false">
+          <i class="fa-solid fa-landmark"></i> Architecture & Heritage
+        </button>
+        <button type="button" class="gallery-filter-chip" data-filter="nature" role="tab" aria-selected="false">
+          <i class="fa-solid fa-leaf"></i> Nature & Gardens
+        </button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid" id="galleryGrid">
+        
+        <figure class="gallery-card" data-category="memorial" onclick="openLightbox(0)">
+          <div class="gallery-img-wrap">
+            <img src="assets/azad_statue_martyrdom.jpg" alt="Chandra Shekhar Azad Bronze Statue with Inscribed Martyrdom Date" loading="lazy" />
+            <div class="gallery-card-overlay">
+              <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              <span class="gallery-card-cat">Memorial</span>
+            </div>
+          </div>
+          <figcaption class="gallery-card-caption">
+            <h4>Sacred Martyrdom Bronze Statue</h4>
+            <p>Original memorial statue erected at the martyrdom site where Azad made his supreme sacrifice.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-card" data-category="memorial" onclick="openLightbox(1)">
+          <div class="gallery-img-wrap">
+            <img src="assets/azad_memorial_homage.jpg" alt="National Floral Homage and Tributes at Azad Memorial Plaza" loading="lazy" />
+            <div class="gallery-card-overlay">
+              <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              <span class="gallery-card-cat">Memorial</span>
+            </div>
+          </div>
+          <figcaption class="gallery-card-caption">
+            <h4>National Homage Pavilion</h4>
+            <p>Daily floral tributes offered by citizens, dignitaries, and school students from across India.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-card" data-category="memorial" onclick="openLightbox(2)">
+          <div class="gallery-img-wrap">
+            <img src="assets/azad_memorial.jpg" alt="Panoramic view of Chandra Shekhar Azad Memorial Garden and Column" loading="lazy" />
+            <div class="gallery-card-overlay">
+              <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              <span class="gallery-card-cat">Memorial</span>
+            </div>
+          </div>
+          <figcaption class="gallery-card-caption">
+            <h4>Memorial Column & Sanctorum</h4>
+            <p>Sanctuary gardens surrounding the sacred Jamun tree and memorial pedestal.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-card" data-category="architecture" onclick="openLightbox(3)">
+          <div class="gallery-img-wrap">
+            <img src="assets/thornhill_library.jpg" alt="Thornhill Mayne Memorial Public Library Gothic Facade and Tower" loading="lazy" />
+            <div class="gallery-card-overlay">
+              <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              <span class="gallery-card-cat">Architecture</span>
+            </div>
+          </div>
+          <figcaption class="gallery-card-caption">
+            <h4>Thornhill Mayne Memorial Library</h4>
+            <p>1878 Gothic revival sandstone library housing over 125,000 rare manuscripts and books.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-card" data-category="architecture" onclick="openLightbox(4)">
+          <div class="gallery-img-wrap">
+            <img src="assets/allahabad_museum.jpg" alt="The Allahabad Museum Central Building and Stone Sculptures" loading="lazy" />
+            <div class="gallery-card-overlay">
+              <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              <span class="gallery-card-cat">Architecture</span>
+            </div>
+          </div>
+          <figcaption class="gallery-card-caption">
+            <h4>The Allahabad Museum</h4>
+            <p>National Category-1 museum preserving Azad's historic Colt pistol and ancient artefacts.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-card" data-category="architecture" onclick="openLightbox(5)">
+          <div class="gallery-img-wrap">
+            <img src="assets/victoria_canopy.jpg" alt="Victoria Memorial Canopy in Italian White Marble" loading="lazy" />
+            <div class="gallery-card-overlay">
+              <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              <span class="gallery-card-cat">Architecture</span>
+            </div>
+          </div>
+          <figcaption class="gallery-card-caption">
+            <h4>Italian Marble Canopy</h4>
+            <p>1906 ornate white Carrara marble pavilion overlooking the manicured central fountain lawns.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-card" data-category="nature" onclick="openLightbox(6)">
+          <div class="gallery-img-wrap">
+            <img src="assets/rose_conservatory.jpg" alt="Heritage Rose Conservatory and Botanical Nursery Beds" loading="lazy" />
+            <div class="gallery-card-overlay">
+              <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              <span class="gallery-card-cat">Nature</span>
+            </div>
+          </div>
+          <figcaption class="gallery-card-caption">
+            <h4>Heritage Rose Conservatory</h4>
+            <p>15-acre sprawling horticultural nursery blooming with over 350 indigenous and hybrid rose varieties.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-card" data-category="nature" onclick="openLightbox(7)">
+          <div class="gallery-img-wrap">
+            <img src="assets/musical_fountain.jpg" alt="Central Lake and Musical Laser Fountain Illuminations at Dusk" loading="lazy" />
+            <div class="gallery-card-overlay">
+              <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              <span class="gallery-card-cat">Nature</span>
+            </div>
+          </div>
+          <figcaption class="gallery-card-caption">
+            <h4>Musical Laser Fountain</h4>
+            <p>Synchronized water jets and patriotic illumination shows hosted every evening at the central lake.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-card" data-category="nature" onclick="openLightbox(8)">
+          <div class="gallery-img-wrap">
+            <img src="assets/azad_memorial_avenue.jpg" alt="Grand Heritage Tree Avenues and Morning Walker Pathways" loading="lazy" />
+            <div class="gallery-card-overlay">
+              <span class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              <span class="gallery-card-cat">Nature</span>
+            </div>
+          </div>
+          <figcaption class="gallery-card-caption">
+            <h4>Grand Tree Avenues & Walkways</h4>
+            <p>Shaded mahogany and neem walking tracks providing clean air for thousands of morning runners.</p>
+          </figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Visitor Guide & Essentials (Accordion on Mobile, Grid on Desktop) -->
+  <section class="section-container guide-section" id="visitor-guide">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle">Visitor Essentials • मार्गदर्शिका</span>
+        <h2 class="section-title">Park Visitor Guide & Regulations</h2>
+        <p class="section-desc">
+          Everything you need to plan a respectful, enjoyable, and safe visit to North India's largest urban heritage park.
+        </p>
+      </div>
+
+      <div class="guide-accordion-container" id="guideAccordion">
+        
+        <!-- Accordion Item 1: Timings -->
+        <article class="guide-accordion-item active">
+          <button type="button" class="guide-accordion-header" aria-expanded="true">
+            <div class="header-left">
+              <span class="guide-icon-badge"><i class="fa-solid fa-clock"></i></span>
+              <div>
+                <h3>Park Timings & Seasonal Schedules</h3>
+                <span class="guide-sub">Morning walkers, general public, museum & fountain hours</span>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-down guide-toggle-arrow"></i>
+          </button>
+          <div class="guide-accordion-body">
+            <div class="guide-content-grid">
+              <div class="guide-info-box">
+                <h4><i class="fa-solid fa-person-walking"></i> Morning Walkers</h4>
+                <p><strong>05:00 AM – 09:00 AM</strong></p>
+                <small>Open every day, 365 days a year. Free entry for registered passholders.</small>
+              </div>
+              <div class="guide-info-box">
+                <h4><i class="fa-solid fa-sun"></i> General Public Hours</h4>
+                <p><strong>09:00 AM – 08:30 PM</strong></p>
+                <small>Entry ticket or online QR e-pass required at all four gates.</small>
+              </div>
+              <div class="guide-info-box">
+                <h4><i class="fa-solid fa-landmark"></i> Allahabad Museum</h4>
+                <p><strong>10:00 AM – 05:00 PM</strong></p>
+                <small>Closed every Monday and on National Gazetted Holidays.</small>
+              </div>
+              <div class="guide-info-box">
+                <h4><i class="fa-solid fa-water"></i> Musical Laser Fountain</h4>
+                <p><strong>07:00 PM & 07:45 PM</strong> (Summer)<br><strong>06:30 PM & 07:15 PM</strong> (Winter)</p>
+                <small>Included with regular evening park admission.</small>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Accordion Item 2: Entry Fees -->
+        <article class="guide-accordion-item">
+          <button type="button" class="guide-accordion-header" aria-expanded="false">
+            <div class="header-left">
+              <span class="guide-icon-badge"><i class="fa-solid fa-ticket"></i></span>
+              <div>
+                <h3>Entry Tariff & Digital Passes</h3>
+                <span class="guide-sub">Official rates authorized by Prayagraj Municipal Corporation</span>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-down guide-toggle-arrow"></i>
+          </button>
+          <div class="guide-accordion-body">
+            <div class="tariff-table-wrap">
+              <table class="tariff-table">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Rate</th>
+                    <th>Validity & Inclusions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Adult General Entry</strong></td>
+                    <td class="rate-highlight">₹15</td>
+                    <td>Valid for single entry to all gardens, memorials & fountain.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Children (Under 5 years)</strong></td>
+                    <td class="rate-free">FREE</td>
+                    <td>Complimentary entry accompanied by an adult.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Monthly Morning Walker Pass</strong></td>
+                    <td class="rate-highlight">₹120</td>
+                    <td>Valid 30 days during morning hours (5 AM – 9 AM).</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Annual Morning Pass</strong></td>
+                    <td class="rate-highlight">₹1,000</td>
+                    <td>365-day access with dedicated biometric gate lane.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>EV Buggy Ride</strong></td>
+                    <td class="rate-highlight">₹20</td>
+                    <td>Round-trip perimeter shuttle per person (free for disabled).</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </article>
+
+        <!-- Accordion Item 3: Rules & Swachh Bharat -->
+        <article class="guide-accordion-item">
+          <button type="button" class="guide-accordion-header" aria-expanded="false">
+            <div class="header-left">
+              <span class="guide-icon-badge"><i class="fa-solid fa-shield-heart"></i></span>
+              <div>
+                <h3>Rules, Etiquette & Swachh Bharat Protocols</h3>
+                <span class="guide-sub">Maintaining the sanctity, cleanliness, and security of the memorial</span>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-down guide-toggle-arrow"></i>
+          </button>
+          <div class="guide-accordion-body">
+            <div class="rules-grid">
+              <div class="rule-card">
+                <i class="fa-solid fa-ban text-danger"></i>
+                <div>
+                  <strong>Strict Zero-Plastic Zone</strong>
+                  <p>Single-use plastic bags, bottles, and thermocol are strictly prohibited. Steel water refill stations are placed at each gate.</p>
+                </div>
+              </div>
+              <div class="rule-card">
+                <i class="fa-solid fa-camera"></i>
+                <div>
+                  <strong>Photography & Drones</strong>
+                  <p>Personal mobile photography is free and encouraged. Commercial filming or drone flights require prior clearance from the District Magistrate.</p>
+                </div>
+              </div>
+              <div class="rule-card">
+                <i class="fa-solid fa-seedling text-success"></i>
+                <div>
+                  <strong>Flora & Fauna Protection</strong>
+                  <p>Plucking flowers, disturbing bird sanctuaries, or littering invites a strict municipal penalty under Uttar Pradesh Municipal Act.</p>
+                </div>
+              </div>
+              <div class="rule-card">
+                <i class="fa-solid fa-smoking text-danger"></i>
+                <div>
+                  <strong>Tobacco & Alcohol Ban</strong>
+                  <p>Smoking, gutkha, paan, or alcohol consumption inside the sacred sanctuary is strictly prohibited and punishable by law.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Accordion Item 4: Accessibility -->
+        <article class="guide-accordion-item">
+          <button type="button" class="guide-accordion-header" aria-expanded="false">
+            <div class="header-left">
+              <span class="guide-icon-badge"><i class="fa-solid fa-wheelchair"></i></span>
+              <div>
+                <h3>Accessibility & Special Assistance</h3>
+                <span class="guide-sub">Inclusive facilities for senior citizens, wheelchairs, and families</span>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-down guide-toggle-arrow"></i>
+          </button>
+          <div class="guide-accordion-body">
+            <div class="guide-content-grid">
+              <div class="guide-info-box">
+                <h4><i class="fa-solid fa-wheelchair"></i> Free Wheelchair Services</h4>
+                <p>Standard manual wheelchairs available at <strong>Gate 1 (Kamla Nehru)</strong> and <strong>Gate 3 (Thornhill)</strong> against valid ID deposit.</p>
+              </div>
+              <div class="guide-info-box">
+                <h4><i class="fa-solid fa-bolt"></i> Solar EV Buggies</h4>
+                <p>8-seater quiet eco-buggies run circular routes every 15 minutes between all major monuments and gardens.</p>
+              </div>
+              <div class="guide-info-box">
+                <h4><i class="fa-solid fa-signs-post"></i> Ramp Access</h4>
+                <p>Gentle slope ramps with handrails are provided at Azad Memorial Plaza, Allahabad Museum, and Thornhill Library.</p>
+              </div>
+              <div class="guide-info-box">
+                <h4><i class="fa-solid fa-phone-volume"></i> Visitor Helpdesk</h4>
+                <p>Assistance officers stationed at Central Control Office (near Gate 1). Helpline: <strong>+91 532 246 0123</strong>.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Accordion Item 5: Walking Trails -->
+        <article class="guide-accordion-item">
+          <button type="button" class="guide-accordion-header" aria-expanded="false">
+            <div class="header-left">
+              <span class="guide-icon-badge"><i class="fa-solid fa-route"></i></span>
+              <div>
+                <h3>Curated Walking Trails & Heritage Loops</h3>
+                <span class="guide-sub">Recommended walking circuits for fitness, botany, and history lovers</span>
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-down guide-toggle-arrow"></i>
+          </button>
+          <div class="guide-accordion-body">
+            <div class="trails-grid">
+              <div class="trail-card">
+                <span class="trail-badge badge-freedom">Freedom Trail • 1.8 km</span>
+                <h4>Martyrdom & Memorial Circuit</h4>
+                <p>Gate 1 → Sacred Jamun Tree → Azad Bronze Statue → Allahabad Museum Freedom Gallery → Gate 1. (Approx. 45 mins)</p>
+              </div>
+              <div class="trail-card">
+                <span class="trail-badge badge-botany">Botanical Loop • 2.4 km</span>
+                <h4>Colonial Gardens & Rose Conservatory</h4>
+                <p>Gate 4 → 15-Acre Rose Conservatory → Victoria Marble Canopy → Bonsai Nursery → Musical Lake. (Approx. 60 mins)</p>
+              </div>
+              <div class="trail-card">
+                <span class="trail-badge badge-fitness">Perimeter Loop • 3.2 km</span>
+                <h4>Morning Jogger Red-Clay Track</h4>
+                <p>Full 133-acre perimeter jogging track cushioned with natural red clay and shaded by 100-year-old mahogany trees.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Reach & Transit Connectivity -->
+  <section class="section-container transit-section" id="how-to-reach">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle">Connectivity & Routes • कैसे पहुँचें</span>
+        <h2 class="section-title">How to Reach Azad Park</h2>
+        <p class="section-desc">
+          Centrally located in the heart of Prayagraj's Civil Lines & George Town districts, conveniently reachable from all major railway terminals, airports, and bus stations.
+        </p>
+      </div>
+
+      <div class="transit-grid">
+        
+        <article class="transit-card">
+          <div class="transit-card-header">
+            <span class="transit-icon"><i class="fa-solid fa-train"></i></span>
+            <div class="transit-hub-meta">
+              <h3>Prayagraj Junction (PRYJ)</h3>
+              <span class="transit-dist"><i class="fa-solid fa-location-arrow"></i> 3.0 km • 10-15 mins</span>
+            </div>
+          </div>
+          <p class="transit-desc">
+            Main railway terminal. Autos, app cabs (Ola/Uber), and e-rickshaws are available 24/7 directly via Kutchery Road to Gate 1 or Gate 2.
+          </p>
+          <div class="transit-fare-tag">
+            <span>Estimated Auto Fare: ₹50 - ₹80</span>
+          </div>
+          <a href="https://www.google.com/maps/dir/Prayagraj+Junction,+Prayagraj/Chandrashekhar+Azad+Park,+Prayagraj" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm btn-block">
+            <i class="fa-solid fa-diamond-turn-right"></i> Directions from Railway Station
+          </a>
+        </article>
+
+        <article class="transit-card">
+          <div class="transit-card-header">
+            <span class="transit-icon"><i class="fa-solid fa-bus"></i></span>
+            <div class="transit-hub-meta">
+              <h3>Civil Lines Bus Stand</h3>
+              <span class="transit-dist"><i class="fa-solid fa-location-arrow"></i> 1.5 km • 5-8 mins</span>
+            </div>
+          </div>
+          <p class="transit-desc">
+            Primary UPSRTC inter-city bus terminal connecting Lucknow, Varanasi, Kanpur, and Ayodhya. Direct e-rickshaws reach Gate 4 in under 5 minutes.
+          </p>
+          <div class="transit-fare-tag">
+            <span>Estimated E-Rickshaw Fare: ₹15 - ₹25</span>
+          </div>
+          <a href="https://www.google.com/maps/dir/Civil+Lines+Bus+Station,+Prayagraj/Chandrashekhar+Azad+Park,+Prayagraj" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm btn-block">
+            <i class="fa-solid fa-diamond-turn-right"></i> Directions from Bus Terminal
+          </a>
+        </article>
+
+        <article class="transit-card">
+          <div class="transit-card-header">
+            <span class="transit-icon"><i class="fa-solid fa-plane-departure"></i></span>
+            <div class="transit-hub-meta">
+              <h3>Prayagraj Airport (Bamrauli - IXD)</h3>
+              <span class="transit-dist"><i class="fa-solid fa-location-arrow"></i> 12.5 km • 25-35 mins</span>
+            </div>
+          </div>
+          <p class="transit-desc">
+            Domestic airport with direct flights to Delhi, Mumbai, Bengaluru, and Pune. Pre-paid taxis and cabs are readily available at arrival gates.
+          </p>
+          <div class="transit-fare-tag">
+            <span>Estimated Taxi Fare: ₹350 - ₹500</span>
+          </div>
+          <a href="https://www.google.com/maps/dir/Prayagraj+Airport,+Bamrauli/Chandrashekhar+Azad+Park,+Prayagraj" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm btn-block">
+            <i class="fa-solid fa-diamond-turn-right"></i> Directions from Airport
+          </a>
+        </article>
+
+        <article class="transit-card">
+          <div class="transit-card-header">
+            <span class="transit-icon"><i class="fa-solid fa-water"></i></span>
+            <div class="transit-hub-meta">
+              <h3>Triveni Sangam & Kumbh Grounds</h3>
+              <span class="transit-dist"><i class="fa-solid fa-location-arrow"></i> 5.5 km • 15-20 mins</span>
+            </div>
+          </div>
+          <p class="transit-desc">
+            Holy confluence of Ganga, Yamuna and mythical Saraswati. Accessible via Daraganj or Bakshi Bandh road through George Town.
+          </p>
+          <div class="transit-fare-tag">
+            <span>Estimated Auto Fare: ₹100 - ₹140</span>
+          </div>
+          <a href="https://www.google.com/maps/dir/Triveni+Sangam,+Prayagraj/Chandrashekhar+Azad+Park,+Prayagraj" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm btn-block">
+            <i class="fa-solid fa-diamond-turn-right"></i> Directions from Sangam
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Nearby Historical Attractions -->
+  <section class="section-container nearby-section" id="nearby">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle">Explore Prayagraj • आस-पास के दर्शनीय स्थल</span>
+        <h2 class="section-title">Nearby Historical Landmarks</h2>
+        <p class="section-desc">
+          Combine your park excursion with these iconic heritage landmarks located within a 5-kilometre radius in Prayagraj.
+        </p>
+      </div>
+
+      <div class="nearby-grid">
+        
+        <article class="nearby-card">
+          <div class="nearby-img-wrap">
+            <img src="assets/allahabad_museum.jpg" alt="Anand Bhavan and Swaraj Bhavan Historic Memorial Mansion" loading="lazy" />
+            <span class="nearby-dist-badge"><i class="fa-solid fa-location-dot"></i> 1.8 km North</span>
+          </div>
+          <div class="nearby-body">
+            <h3>Anand Bhavan & Swaraj Bhavan</h3>
+            <span class="nearby-cat">Freedom Struggle Headquarters</span>
+            <p>Historic ancestral mansion of the Nehru family and epicenter of India's independence movement, now a national museum with a planetarium.</p>
+            <div class="nearby-actions">
+              <a href="https://www.google.com/maps/search/?api=1&query=Anand+Bhavan+Prayagraj" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <i class="fa-solid fa-diamond-turn-right"></i> Directions
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="nearby-card">
+          <div class="nearby-img-wrap">
+            <img src="assets/thornhill_library.jpg" alt="All Saints Cathedral Gothic Stone Architecture" loading="lazy" />
+            <span class="nearby-dist-badge"><i class="fa-solid fa-location-dot"></i> 1.2 km West</span>
+          </div>
+          <div class="nearby-body">
+            <h3>All Saints Cathedral (Patthar Girja)</h3>
+            <span class="nearby-cat">1887 Gothic Masterpiece</span>
+            <p>Spectacular 13th-century style Anglo-Gothic cathedral designed by Sir William Emerson, renowned for stained glass windows and stone carvings.</p>
+            <div class="nearby-actions">
+              <a href="https://www.google.com/maps/search/?api=1&query=All+Saints+Cathedral+Prayagraj" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <i class="fa-solid fa-diamond-turn-right"></i> Directions
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="nearby-card">
+          <div class="nearby-img-wrap">
+            <img src="assets/victoria_canopy.jpg" alt="High Court of Judicature at Allahabad" loading="lazy" />
+            <span class="nearby-dist-badge"><i class="fa-solid fa-location-dot"></i> 2.5 km West</span>
+          </div>
+          <div class="nearby-body">
+            <h3>Allahabad High Court</h3>
+            <span class="nearby-cat">Constitutional Landmark</span>
+            <p>One of the oldest high courts established in India (1866), renowned for its majestic red brick facade and monumental legal heritage.</p>
+            <div class="nearby-actions">
+              <a href="https://www.google.com/maps/search/?api=1&query=Allahabad+High+Court+Prayagraj" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <i class="fa-solid fa-diamond-turn-right"></i> Directions
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="nearby-card">
+          <div class="nearby-img-wrap">
+            <img src="assets/musical_fountain.jpg" alt="Triveni Sangam Sacred Confluence and Akbar Fort" loading="lazy" />
+            <span class="nearby-dist-badge"><i class="fa-solid fa-location-dot"></i> 5.5 km East</span>
+          </div>
+          <div class="nearby-body">
+            <h3>Triveni Sangam & Akbar Fort</h3>
+            <span class="nearby-cat">Sacred Confluence & Mughal Fort</span>
+            <p>The sacred confluence of Ganga, Yamuna, and mythical Saraswati, guarded by the 1583 Akbar Fort and the subterranean Akshayavat tree.</p>
+            <div class="nearby-actions">
+              <a href="https://www.google.com/maps/search/?api=1&query=Triveni+Sangam+Prayagraj" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                <i class="fa-solid fa-diamond-turn-right"></i> Directions
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Digital Passes & Ticketing Engine -->
+  <section class="section-container ticketing-section" id="ticketing">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle">Instant Paperless E-Pass</span>
+        <h2 class="section-title">Park Entry Passes & Memberships</h2>
+        <p class="section-desc">
+          Official digital pass generator authorized by Prayagraj Municipal Corporation & Horticultural Board. Generate instant verified QR e-tickets on your phone.
+        </p>
+      </div>
+
+      <div class="booking-layout">
+        
+        <!-- Left: Pass Selection Cards -->
+        <div class="pass-types-column">
+          
+          <div class="pass-card active" data-type="general" data-price="15">
+            <div class="pass-radio"><span class="radio-check"></span></div>
+            <div class="pass-info">
+              <div class="pass-header-row">
+                <h4>General Day Entry Pass</h4>
+                <span class="pass-price">₹15 <small>/ person</small></span>
+              </div>
+              <p>Full-day single entry access to all gardens, memorial plaza, jogging tracks, and evening musical fountain.</p>
+              <span class="pass-badge">Most Popular</span>
+            </div>
+          </div>
+
+          <div class="pass-card" data-type="morning-monthly" data-price="120">
+            <div class="pass-radio"><span class="radio-check"></span></div>
+            <div class="pass-info">
+              <div class="pass-header-row">
+                <h4>Monthly Morning Walker Pass</h4>
+                <span class="pass-price">₹120 <small>/ month</small></span>
+              </div>
+              <p>Unlimited priority gate access (05:00 AM – 08:30 AM), access to open-air gym and designated yoga lawns.</p>
+              <span class="pass-badge badge-green">Health Pass</span>
+            </div>
+          </div>
+
+          <div class="pass-card" data-type="morning-annual" data-price="1000">
+            <div class="pass-radio"><span class="radio-check"></span></div>
+            <div class="pass-info">
+              <div class="pass-header-row">
+                <h4>Annual Privilege Walker Pass</h4>
+                <span class="pass-price">₹1,000 <small>/ year</small></span>
+              </div>
+              <p>365 days unlimited dawn and dusk access, free EV buggy rides for seniors, and floral show VIP invitations.</p>
+              <span class="pass-badge badge-gold">Best Value</span>
+            </div>
+          </div>
+
+          <div class="pass-card" data-type="museum-combo" data-price="50">
+            <div class="pass-radio"><span class="radio-check"></span></div>
+            <div class="pass-info">
+              <div class="pass-header-row">
+                <h4>Heritage & Museum Combined Pass</h4>
+                <span class="pass-price">₹50 <small>/ person</small></span>
+              </div>
+              <p>Complete entry to Azad Park + All 16 National Galleries of Allahabad Museum (Includes Azad's Colt Gallery).</p>
+              <span class="pass-badge badge-blue">Culture Combo</span>
+            </div>
+          </div>
+
+          <div class="pass-card" data-type="camera" data-price="100">
+            <div class="pass-radio"><span class="radio-check"></span></div>
+            <div class="pass-info">
+              <div class="pass-header-row">
+                <h4>DSLR / Professional Photo Permit</h4>
+                <span class="pass-price">₹100 <small>/ day</small></span>
+              </div>
+              <p>Permit for professional DSLR, pre-wedding, or documentary nature photography across botanical grounds.</p>
+              <span class="pass-badge">Media</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Dynamic Booking Form Card -->
+        <div class="booking-form-column">
+          <div class="booking-card">
+            <div class="booking-header">
+              <div class="booking-header-with-emblem">
+                <img src="Logo.png" alt="Azad Park Official Seal" class="booking-card-emblem" onerror="this.onerror=null; this.src='Logo%20Azad%20Park.png';" />
+                <div>
+                  <h3>Reserve Your Digital Pass</h3>
+                  <p>Instant official e-pass with verifiable QR code.</p>
+                </div>
+              </div>
+            </div>
+
+            <form id="bookingForm" class="booking-form">
+              <div class="form-group">
+                <label for="visitDate">Date of Visit</label>
+                <input type="date" id="visitDate" name="visitDate" required class="form-input" />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="visitorCount">Number of Persons</label>
+                  <div class="quantity-picker">
+                    <button type="button" class="qty-btn" id="qtyMinus"><i class="fa-solid fa-minus"></i></button>
+                    <input type="number" id="visitorCount" name="ticketsCount" value="1" min="1" max="25" readonly class="qty-input" />
+                    <button type="button" class="qty-btn" id="qtyPlus"><i class="fa-solid fa-plus"></i></button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="idProofType">ID Proof Type</label>
+                  <select id="idProofType" name="idProof" class="form-input">
+                    <option value="Aadhaar Card">Aadhaar Card</option>
+                    <option value="Voter ID">Voter ID</option>
+                    <option value="Driving License">Driving License</option>
+                    <option value="Student ID">Student ID</option>
+                    <option value="Passport">Passport</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="fullName">Primary Visitor Full Name *</label>
+                <input type="text" id="fullName" name="fullName" placeholder="e.g. Abhishek Sharma" required class="form-input" />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="phone">Mobile Number (for SMS Pass) *</label>
+                  <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" required pattern="[0-9]{10}" class="form-input" />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email Address (for PDF Pass)</label>
+                  <input type="email" id="email" name="email" placeholder="name@example.com" class="form-input" />
+                </div>
+              </div>
+
+              <!-- Price Breakdown Box -->
+              <div class="price-breakdown">
+                <div class="price-row">
+                  <span id="summaryPassName">General Day Entry Pass</span>
+                  <span id="summaryUnitPrice">₹15 × 1</span>
+                </div>
+                <div class="price-row text-muted">
+                  <span>Municipal Cleanliness Cess</span>
+                  <span>₹0 (Included)</span>
+                </div>
+                <div class="price-divider"></div>
+                <div class="price-row total-row">
+                  <strong>Total Amount Payable</strong>
+                  <strong class="total-price" id="summaryTotalAmount">₹15</strong>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block btn-large btn-glow" id="submitBookingBtn">
+                <i class="fa-solid fa-lock"></i> Confirm & Generate E-Pass
+              </button>
+
+              <p class="form-disclaimer">
+                <i class="fa-solid fa-shield-check"></i> 100% Secure Government Portal. Instant verification at all park gates.
+              </p>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Calendar Section -->
+  <section class="section-container events-section" id="events">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle">Sanctuary Gatherings</span>
+        <h2 class="section-title">Upcoming Events & Exhibitions</h2>
+        <p class="section-desc">Join morning wellness assemblies, guided botanical walks, and historical commemoration programs.</p>
+      </div>
+
+      <div class="events-grid" id="eventsGrid">
+        <!-- Injected via app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Visitor Reviews & Community Section -->
+  <section class="section-container reviews-section" id="reviews">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle">Visitor Voices</span>
+        <h2 class="section-title">Guestbook & Community Feedback</h2>
+        <p class="section-desc">Read reflections from daily morning walkers, historians, and pilgrims from across India.</p>
+        <button class="btn btn-secondary" id="openReviewModalBtn">
+          <i class="fa-solid fa-pen-to-square"></i> Share Your Experience
+        </button>
+      </div>
+
+      <div class="reviews-grid" id="reviewsGrid">
+        <!-- Injected via app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Visitor Feedback Pulse Strip (Feature 08) -->
+  <section class="pulse-feedback-strip" id="feedbackPulseStrip" aria-label="Digital Experience Feedback">
+    <div class="container pulse-container">
+      <div class="pulse-card">
+        
+        <!-- Header Row -->
+        <div class="pulse-header-row">
+          <div class="pulse-title-wrap">
+            <div class="pulse-badge-icon">
+              <i class="fa-solid fa-heart-pulse"></i>
+              <span class="beacon-ring"></span>
+            </div>
+            <div>
+              <span class="pulse-kicker"><i class="fa-solid fa-shield-halved"></i> Anonymous & Ground-Verified</span>
+              <h3 class="pulse-heading">How was your digital experience today?</h3>
+              <p class="pulse-desc">Quick one-click pulse response • Help us preserve and elevate Chandra Shekhar Azad Park portal</p>
+            </div>
+          </div>
+          <div class="pulse-counter-badge" id="pulseLiveCounter">
+            <i class="fa-solid fa-signal" style="color:var(--gold-primary);"></i> <span id="pulseTotalCount">Verified Visitor Pulse Active</span>
+          </div>
+        </div>
+
+        <!-- Sentiment Rating Buttons -->
+        <div class="pulse-options-group" id="pulseOptionsGroup" role="radiogroup" aria-label="Experience Rating">
+          <button type="button" class="pulse-pill" data-sentiment="great" role="radio" aria-checked="false" tabindex="0">
+            <span class="pulse-emoji">😀</span>
+            <span class="pulse-label">Great</span>
+            <span class="pulse-check"><i class="fa-solid fa-check"></i></span>
+          </button>
+          <button type="button" class="pulse-pill" data-sentiment="good" role="radio" aria-checked="false" tabindex="0">
+            <span class="pulse-emoji">🙂</span>
+            <span class="pulse-label">Good</span>
+            <span class="pulse-check"><i class="fa-solid fa-check"></i></span>
+          </button>
+          <button type="button" class="pulse-pill" data-sentiment="okay" role="radio" aria-checked="false" tabindex="0">
+            <span class="pulse-emoji">😐</span>
+            <span class="pulse-label">Okay</span>
+            <span class="pulse-check"><i class="fa-solid fa-check"></i></span>
+          </button>
+          <button type="button" class="pulse-pill" data-sentiment="needs-improvement" role="radio" aria-checked="false" tabindex="0">
+            <span class="pulse-emoji">🙁</span>
+            <span class="pulse-label">Needs Improvement</span>
+            <span class="pulse-check"><i class="fa-solid fa-check"></i></span>
+          </button>
+        </div>
+
+        <!-- Interactive Suggestion & Topic Container (Smoothly expands when sentiment clicked) -->
+        <div class="pulse-suggestion-container hidden" id="pulseSuggestionBox">
+          <div class="pulse-suggestion-inner">
+            <div class="pulse-subhead-row">
+              <label for="pulseSuggestionInput" class="pulse-field-label">
+                <i class="fa-solid fa-feather-pointed"></i> What should we improve? <span class="opt-text">(Optional note)</span>
+              </label>
+              <span class="pulse-char-counter" id="pulseCharCounter">0 / 280</span>
+            </div>
+
+            <!-- Quick Focus Topic Chips -->
+            <div class="pulse-topic-tray" id="pulseTopicTray">
+              <span class="tray-label"><i class="fa-solid fa-tags"></i> Topic:</span>
+              <button type="button" class="topic-chip active" data-topic="General Experience">✨ General Experience</button>
+              <button type="button" class="topic-chip" data-topic="Interactive Map">🗺️ Interactive Map</button>
+              <button type="button" class="topic-chip" data-topic="E-Pass Booking">🎟️ E-Pass Booking</button>
+              <button type="button" class="topic-chip" data-topic="Historical Archives">🏛️ Historical Archives</button>
+              <button type="button" class="topic-chip" data-topic="Mobile Usability">📱 Mobile Usability</button>
+              <button type="button" class="topic-chip" data-topic="Amenities & Buggy">♿ Amenities & Buggy</button>
+            </div>
+
+            <!-- Input Row & Professional Send Button -->
+            <div class="pulse-input-row">
+              <div class="pulse-textarea-box">
+                <textarea 
+                  id="pulseSuggestionInput" 
+                  class="pulse-input" 
+                  rows="2" 
+                  maxlength="280"
+                  placeholder="Share a thought, compliment, or note on how we can improve your digital visit..."
+                  autocomplete="off"
+                ></textarea>
+              </div>
+              <button type="button" class="btn btn-pulse-send" id="btnSubmitPulse" aria-label="Send Experience Pulse">
+                <i class="fa-solid fa-paper-plane send-icon"></i>
+                <span class="btn-text">Send Pulse</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Professional Animated Thank You Banner -->
+        <div class="pulse-thank-msg hidden" id="pulseThankMsg">
+          <div class="thank-card">
+            <div class="thank-icon-ring">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="thank-text-wrap">
+              <h4>Thank you for your feedback!</h4>
+              <p>Your response has been verified & recorded anonymously. Your reflections help maintain the dignity and quality of Chandra Shekhar Azad Park's digital visitor portal.</p>
+            </div>
+            <button type="button" class="btn-reset-pulse" id="btnResetPulse">
+              <i class="fa-solid fa-rotate-left"></i> Submit Another
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-col brand-col">
+        <a href="#" class="brand-logo footer-logo" title="Chandra Shekhar Azad Park - Return to Top">
+          <img src="Logo.png" alt="Chandra Shekhar Azad Park Official Seal" class="brand-logo-img footer-logo-img" onerror="this.onerror=null; this.src='Logo%20Azad%20Park.png';" />
+          <div class="brand-text footer-brand-text">
+            <span class="brand-name footer-brand-name">AZAD PARK</span>
+            <span class="brand-sub footer-brand-sub">CHANDRA SHEKHAR AZAD PARK</span>
+          </div>
+        </a>
+        <p class="footer-desc">
+          Official public portal for Chandra Shekhar Azad Park (formerly Alfred Park), maintained in reverence to India's freedom martyrs by the Prayagraj Municipal Administration & U.P. Horticulture Directorate.
+        </p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-link" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="social-link" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Key Attractions</h4>
+        <ul class="footer-links">
+          <li><a href="#attractions">Chandra Shekhar Azad Memorial</a></li>
+          <li><a href="#attractions">Thornhill Mayne Public Library</a></li>
+          <li><a href="#attractions">The Allahabad Museum</a></li>
+          <li><a href="#attractions">Victoria Marble Canopy</a></li>
+          <li><a href="#attractions">Heritage Rose Conservatory</a></li>
+          <li><a href="#attractions">Musical Laser Fountain</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Visitor Essentials</h4>
+        <ul class="footer-links">
+          <li><a href="#ticketing">Online Pass Generation</a></li>
+          <li><a href="#map-section">Interactive Sanctuary Map</a></li>
+          <li><a href="#history">Audio Chronicle Guide</a></li>
+          <li><a href="#" id="footerVerifyTrigger">Verify Pass Authenticity</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col contact-col">
+        <h4>Park Administration</h4>
+        <p><i class="fa-solid fa-location-dot"></i> Civil Lines / Georgetown, Prayagraj, UP 211002</p>
+        <p><i class="fa-solid fa-phone"></i> General Helpline: +91 532 246 0123</p>
+        <p><i class="fa-solid fa-shield"></i> Security Control: +91 94500 12345</p>
+        <p><i class="fa-solid fa-envelope"></i> helpdesk@azadpark-prayagraj.gov.in</p>
+
+        <div class="clean-india-badge">
+          <i class="fa-solid fa-recycle"></i> <span>Swachh Bharat • Plastic-Free Zone</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container bottom-inner">
+        <p>© 2026 Chandra Shekhar Azad Park Administration. All Rights Reserved.</p>
+        <p>Jai Hind • अमर शहीद चंद्रशेखर आज़ाद अमर रहें</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODALS ================= -->
+
+  <!-- 1. E-Ticket Confirmation Modal with QR Code -->
+  <div class="modal-backdrop hidden" id="ticketModal">
+    <div class="modal-card modal-ticket">
+      <button class="modal-close" id="closeTicketModalBtn"><i class="fa-solid fa-xmark"></i></button>
+      
+      <div class="ticket-slip" id="printableTicket">
+        <div class="ticket-header">
+          <img src="Logo.png" alt="Azad Park Official Seal" class="ticket-logo-img" onerror="this.onerror=null; this.src='Logo%20Azad%20Park.png';" />
+          <div>
+            <h3>CHANDRA SHEKHAR AZAD PARK</h3>
+            <p>Official Digital Entry E-Pass • Prayagraj</p>
+          </div>
+        </div>
+
+        <div class="ticket-status-badge">
+          <i class="fa-solid fa-circle-check"></i> <span id="modalTicketStatus">CONFIRMED & ACTIVE</span>
+        </div>
+
+        <div class="ticket-body">
+          <div class="ticket-field">
+            <span class="lbl">Booking Reference</span>
+            <strong class="val ref-highlight" id="modalBookingRef">AZAD-2026-89412</strong>
+          </div>
+          <div class="ticket-field">
+            <span class="lbl">Primary Visitor</span>
+            <strong class="val" id="modalVisitorName">Abhishek Sharma</strong>
+          </div>
+          <div class="ticket-field">
+            <span class="lbl">Pass Type</span>
+            <strong class="val" id="modalPassType">General Day Entry Pass</strong>
+          </div>
+          <div class="ticket-field">
+            <span class="lbl">Date of Visit</span>
+            <strong class="val" id="modalVisitDate">2026-09-18</strong>
+          </div>
+          <div class="ticket-field">
+            <span class="lbl">Total Persons</span>
+            <strong class="val" id="modalPersonsCount">1 Person</strong>
+          </div>
+          <div class="ticket-field">
+            <span class="lbl">Amount Paid</span>
+            <strong class="val" id="modalAmountPaid">₹15</strong>
+          </div>
+        </div>
+
+        <!-- Generated QR Code Canvas -->
+        <div class="ticket-qr-area">
+          <div class="qr-box" id="qrCanvasContainer">
+            <!-- Simulated high contrast vector QR will be rendered here -->
+          </div>
+          <p class="qr-instruct">Scan at Gate 1, 2, 3 or 4 turnstiles for fast entry.</p>
+        </div>
+
+        <div class="ticket-footer-note">
+          <i class="fa-solid fa-circle-info"></i> Please carry original photo ID matching the primary visitor name. Plastics are prohibited.
+        </div>
+      </div>
+
+      <div class="ticket-actions">
+        <button class="btn btn-primary btn-block" onclick="window.print()">
+          <i class="fa-solid fa-print"></i> Print / Save as PDF
+        </button>
+        <button class="btn btn-secondary btn-block" id="modalDoneBtn">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Verify Ticket Modal -->
+  <div class="modal-backdrop hidden" id="verifyModal">
+    <div class="modal-card modal-medium">
+      <button class="modal-close" id="closeVerifyModalBtn"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-header-icon"><i class="fa-solid fa-shield-halved"></i></div>
+      <h3>Verify Official E-Pass</h3>
+      <p class="modal-sub">Enter the Booking Reference number or scan QR to check validity.</p>
+      
+      <div class="verify-form-group">
+        <input type="text" id="verifyInputRef" placeholder="e.g. AZAD-2026-12345" class="form-input verify-input" />
+        <button class="btn btn-primary" id="btnVerifySubmit">Check Status</button>
+      </div>
+
+      <div class="verify-result-box hidden" id="verifyResultBox">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Attraction Detail Modal -->
+  <div class="modal-backdrop hidden" id="attractionModal">
+    <div class="modal-card modal-large">
+      <button class="modal-close" id="closeAttractionModalBtn"><i class="fa-solid fa-xmark"></i></button>
+      <div id="attractionModalContent">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Write Review Modal -->
+  <div class="modal-backdrop hidden" id="reviewModal">
+    <div class="modal-card modal-medium">
+      <button class="modal-close" id="closeReviewModalBtn"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-header-icon"><i class="fa-solid fa-pen-nib"></i></div>
+      <h3>Share Your Visitor Experience</h3>
+      <p class="modal-sub">Your reflections help keep the sanctuary clean and vibrant.</p>
+      
+      <form id="reviewForm" class="review-form">
+        <div class="form-group">
+          <label for="revAuthor">Your Name *</label>
+          <input type="text" id="revAuthor" required placeholder="e.g. Priya Sharma" class="form-input" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="revCity">City / State</label>
+            <input type="text" id="revCity" placeholder="e.g. Prayagraj" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label for="revRating">Rating</label>
+            <select id="revRating" class="form-input">
+              <option value="5">⭐⭐⭐⭐⭐ (5/5 Outstanding)</option>
+              <option value="4">⭐⭐⭐⭐ (4/5 Very Good)</option>
+              <option value="3">⭐⭐⭐ (3/5 Average)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="revText">Your Feedback / Story *</label>
+          <textarea id="revText" rows="4" required placeholder="Tell us about the walking track, memorial, gardens, or amenities..." class="form-input"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Submit Review</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. Global Instant Search Modal -->
+  <div class="modal-backdrop hidden" id="searchModal" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle">
+    <div class="modal-card modal-search">
+      <div class="search-modal-header">
+        <div class="search-input-wrap">
+          <i class="fa-solid fa-magnifying-glass search-leading-icon"></i>
+          <input 
+            type="search" 
+            id="globalSearchInput" 
+            class="global-search-input" 
+            placeholder="Search attractions, gates, timings, history, rules..." 
+            autocomplete="off"
+            aria-label="Search Azad Park Portal"
+          />
+          <button type="button" class="btn-clear-search hidden" id="btnClearSearch" aria-label="Clear Search Input">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </button>
+        </div>
+        <button type="button" class="modal-close search-close-btn" id="closeSearchModalBtn" aria-label="Close search">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Quick Search Chips -->
+      <div class="search-quick-tags" id="searchQuickTags">
+        <span class="quick-label">Trending:</span>
+        <button type="button" class="search-tag-chip" data-query="Azad Statue">Statue & Tree</button>
+        <button type="button" class="search-tag-chip" data-query="Timings">Park Timings</button>
+        <button type="button" class="search-tag-chip" data-query="Tickets">Entry Fees</button>
+        <button type="button" class="search-tag-chip" data-query="Museum">Allahabad Museum</button>
+        <button type="button" class="search-tag-chip" data-query="Gate">Gates & Parking</button>
+        <button type="button" class="search-tag-chip" data-query="Library">Thornhill Library</button>
+      </div>
+
+      <!-- Search Results Area -->
+      <div class="search-results-container" id="searchResultsContainer">
+        <div class="search-empty-state" id="searchDefaultState">
+          <i class="fa-solid fa-compass"></i>
+          <p>Type keywords to discover monuments, gates, timings, entry passes, and historical archives.</p>
+        </div>
+        <div class="search-results-list" id="searchResultsList"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Heritage Gallery Fullscreen Lightbox -->
+  <div class="modal-backdrop lightbox-backdrop hidden" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Image Lightbox">
+    <div class="lightbox-wrapper">
+      <button type="button" class="lightbox-close-btn" id="closeLightboxBtn" aria-label="Close fullscreen view">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <button type="button" class="lightbox-nav-btn btn-lightbox-prev" id="btnLightboxPrev" aria-label="Previous photo">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+
+      <div class="lightbox-stage">
+        <img src="" alt="" id="lightboxImg" class="lightbox-img" />
+        <div class="lightbox-meta-bar">
+          <div class="lightbox-info">
+            <span class="lightbox-category-tag" id="lightboxCategory">Memorial</span>
+            <h3 class="lightbox-title" id="lightboxTitle">Photo Title</h3>
+            <p class="lightbox-desc" id="lightboxDesc">Photo description text.</p>
+          </div>
+          <div class="lightbox-counter" id="lightboxCounter">1 / 9</div>
+        </div>
+      </div>
+
+      <button type="button" class="lightbox-nav-btn btn-lightbox-next" id="btnLightboxNext" aria-label="Next photo">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- 7. Supervisor & Gatekeeper Admin Validation Modal -->
+  <div class="modal-backdrop hidden" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+    <div class="modal-card modal-admin">
+      <button class="modal-close" id="closeAdminModalBtn" aria-label="Close Admin Portal"><i class="fa-solid fa-xmark"></i></button>
+      
+      <div class="admin-modal-header">
+        <div class="admin-brand">
+          <span class="admin-shield-icon"><i class="fa-solid fa-shield-halved"></i></span>
+          <div>
+            <h3 id="adminModalTitle">Gatekeeper & Supervisor Control Desk</h3>
+            <span class="admin-subtitle">Prayagraj Municipal Corporation • Turnstile Operations</span>
+          </div>
+        </div>
+        <span class="admin-live-badge"><i class="fa-solid fa-circle"></i> Live Sync</span>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="admin-metrics-grid">
+        <div class="metric-card">
+          <span class="metric-num" id="adminMetricToday">1,482</span>
+          <span class="metric-label"><i class="fa-solid fa-user-check"></i> Scans Today</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-num" id="adminMetricMorning">820</span>
+          <span class="metric-label"><i class="fa-solid fa-person-running"></i> Morning Walkers</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-num" id="adminMetricEV">146</span>
+          <span class="metric-label"><i class="fa-solid fa-bolt"></i> EV Buggy Rides</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-num" id="adminMetricActive">99.4%</span>
+          <span class="metric-label"><i class="fa-solid fa-circle-check"></i> Verified Passes</span>
+        </div>
+      </div>
+
+      <!-- Quick Scan & Lookup Form -->
+      <div class="admin-lookup-box">
+        <h4><i class="fa-solid fa-qrcode"></i> Instant Pass Verification</h4>
+        <div class="lookup-input-row">
+          <input 
+            type="text" 
+            id="adminPassLookupInput" 
+            class="form-input" 
+            placeholder="Scan or enter Booking Ref (e.g. AZAD-2026-89412)..." 
+          />
+          <button type="button" class="btn btn-primary" id="btnAdminVerify">
+            <i class="fa-solid fa-check-double"></i> Verify Pass
+          </button>
+        </div>
+        <div class="admin-verify-feedback hidden" id="adminVerifyFeedback"></div>
+      </div>
+
+      <!-- Recent Scans Stream -->
+      <div class="admin-recent-section">
+        <div class="recent-header">
+          <h4><i class="fa-solid fa-clock-rotate-left"></i> Recent Gate Activity</h4>
+          <span class="recent-gate-filter">All Gates (1, 2, 3, 4)</span>
+        </div>
+        <div class="recent-scans-list" id="adminRecentScansList">
+          <div class="scan-record-card">
+            <div class="scan-meta">
+              <span class="scan-ref">AZAD-2026-89412</span>
+              <span class="scan-gate"><i class="fa-solid fa-door-open"></i> Gate 1 (Kamla Nehru)</span>
+            </div>
+            <div class="scan-details">
+              <strong>Abhishek Sharma</strong> • General Day Entry (1 Person)
+            </div>
+            <span class="scan-time"><i class="fa-regular fa-clock"></i> Just now</span>
+          </div>
+
+          <div class="scan-record-card">
+            <div class="scan-meta">
+              <span class="scan-ref">AZAD-2026-89409</span>
+              <span class="scan-gate"><i class="fa-solid fa-door-open"></i> Gate 4 (Dayanand Marg)</span>
+            </div>
+            <div class="scan-details">
+              <strong>Rakesh Verma</strong> • Monthly Morning Walker Pass
+            </div>
+            <span class="scan-time"><i class="fa-regular fa-clock"></i> 4 mins ago</span>
+          </div>
+
+          <div class="scan-record-card">
+            <div class="scan-meta">
+              <span class="scan-ref">AZAD-2026-89401</span>
+              <span class="scan-gate"><i class="fa-solid fa-door-open"></i> Gate 3 (Thornhill Rd)</span>
+            </div>
+            <div class="scan-details">
+              <strong>Dr. Meera Sen</strong> • General Day Entry + EV Shuttle (2 Persons)
+            </div>
+            <span class="scan-time"><i class="fa-regular fa-clock"></i> 11 mins ago</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-footer-actions">
+        <button type="button" class="btn btn-secondary btn-sm" id="btnAdminRefresh">
+          <i class="fa-solid fa-arrows-rotate"></i> Refresh Data
+        </button>
+        <button type="button" class="btn btn-glass btn-sm" id="btnAdminClose">
+          Close Control Desk
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Social Sharing Modal -->
+  <div class="modal-backdrop hidden" id="shareModal" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle">
+    <div class="modal-card modal-share">
+      <button class="modal-close" id="closeShareModalBtn" aria-label="Close Share"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-header-icon"><i class="fa-solid fa-share-nodes"></i></div>
+      <h3 id="shareModalTitle">Share Azad Park Portal</h3>
+      <p class="modal-sub">Inspire friends and family to visit North India's largest heritage urban sanctuary.</p>
+
+      <div class="share-options-grid">
+        <a href="#" class="share-btn-tile share-whatsapp" id="shareWhatsAppBtn" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>WhatsApp</span>
+        </a>
+        <a href="#" class="share-btn-tile share-twitter" id="shareTwitterBtn" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-x-twitter"></i>
+          <span>X / Twitter</span>
+        </a>
+        <a href="#" class="share-btn-tile share-facebook" id="shareFacebookBtn" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-facebook-f"></i>
+          <span>Facebook</span>
+        </a>
+        <a href="#" class="share-btn-tile share-telegram" id="shareTelegramBtn" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-telegram"></i>
+          <span>Telegram</span>
+        </a>
+      </div>
+
+      <div class="share-copy-wrap">
+        <input type="text" id="shareLinkInput" class="form-input share-link-input" readonly value="https://azadpark-prayagraj.gov.in" />
+        <button type="button" class="btn btn-primary" id="btnCopyShareLink">
+          <i class="fa-solid fa-copy"></i> Copy
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Toast Notification -->
+  <div class="toast-notification hidden" id="toastNotification" role="alert" aria-live="polite">
+    <span class="toast-icon" id="toastIcon"><i class="fa-solid fa-circle-check"></i></span>
+    <span class="toast-msg" id="toastMsg">Action completed successfully.</span>
+  </div>
+
+  <!-- Main JavaScript Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

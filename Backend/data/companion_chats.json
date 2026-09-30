@@ -1,0 +1,86 @@
+[
+  {
+    "id": "chat-1790246313566-eitk",
+    "question": "When did Azad attain martyrdom?",
+    "answer": "Chandra Shekhar Azad (1906–1931) was the immortal Commander-in-Chief of the Hindustan Socialist Republican Association (HSRA). On February 27, 1931, in Alfred Park, he was surrounded by colonial police forces. Armed with his historic Colt pistol, he fought single-handedly behind a jamun tree to protect his comrades and reserved his final bullet for himself, keeping his sacred vow never to be captured alive. The bronze memorial statue and sacred tree site in the park mark his supreme martyrdom.",
+    "source": "Official Chandrashekhar Azad Park Records",
+    "sources": [
+      {
+        "title": "Official Chandrashekhar Azad Park Records",
+        "type": "Verified Official Record"
+      }
+    ],
+    "verified": true,
+    "timestamp": "2026-09-24T10:38:33.566Z"
+  },
+  {
+    "id": "chat-1790246140879-t2wy",
+    "question": "When did Azad attain martyrdom?",
+    "answer": "Chandra Shekhar Azad (1906–1931) was the immortal Commander-in-Chief of the Hindustan Socialist Republican Association (HSRA). On February 27, 1931, in Alfred Park, he was surrounded by colonial police forces. Armed with his historic Colt pistol, he fought single-handedly behind a jamun tree to protect his comrades and reserved his final bullet for himself, keeping his sacred vow never to be captured alive. The bronze memorial statue and sacred tree site in the park mark his supreme martyrdom.",
+    "source": "Official Chandrashekhar Azad Park Records",
+    "sources": [
+      {
+        "title": "Official Chandrashekhar Azad Park Records",
+        "type": "Verified Official Record"
+      }
+    ],
+    "verified": true,
+    "timestamp": "2026-09-24T10:35:40.879Z"
+  },
+  {
+    "id": "chat-seed-1",
+    "question": "Who was Chandrashekhar Azad?",
+    "answer": "Chandra Shekhar Azad (1906–1931) was the immortal Commander-in-Chief of the HSRA. On February 27, 1931, in Alfred Park, he fought colonial police single-handedly behind a jamun tree to protect his comrades and reserved his final bullet for himself, keeping his sacred vow never to be captured alive. The bronze memorial statue and sacred tree site in the park mark his supreme martyrdom.",
+    "timestamp": "2026-09-24T10:09:50.474Z",
+    "verified": true,
+    "source": "Official Chandrashekhar Azad Park Records",
+    "sources": [
+      {
+        "title": "Official Chandrashekhar Azad Park Records",
+        "type": "Verified Official Record"
+      }
+    ]
+  },
+  {
+    "id": "chat-seed-2",
+    "question": "What are the museum timings and ticket fees?",
+    "answer": "The Allahabad Museum is open 10:30 AM – 04:30 PM (Closed Mondays). General entry fee is ₹50. Its most revered relic is the authentic .32 bore Colt pistol of Chandra Shekhar Azad.",
+    "timestamp": "2026-09-24T09:24:50.479Z",
+    "verified": true,
+    "source": "Allahabad Museum Official Registry",
+    "sources": [
+      {
+        "title": "Allahabad Museum Official Registry",
+        "type": "Verified Official Record"
+      }
+    ]
+  },
+  {
+    "id": "chat-seed-3",
+    "question": "Tell me about the Rocket Canopy.",
+    "answer": "The Victoria Memorial Canopy (popularly known as the 'Rocket Canopy') is a soaring 45-foot Italian white marble Gothic monument standing at the central crossroads of all 4 park avenues.",
+    "timestamp": "2026-09-24T08:14:50.479Z",
+    "verified": true,
+    "source": "Official Chandrashekhar Azad Park Records",
+    "sources": [
+      {
+        "title": "Official Chandrashekhar Azad Park Records",
+        "type": "Verified Official Record"
+      }
+    ]
+  },
+  {
+    "id": "chat-seed-4",
+    "question": "What is the musical fountain schedule?",
+    "answer": "The Twilight Musical Fountain & Laser Show operates every evening along the central promenade from 07:00 PM – 07:45 PM daily. Viewing is included with general park entry.",
+    "timestamp": "2026-09-24T07:04:50.479Z",
+    "verified": true,
+    "source": "Sanctuary Evening Schedule 2026",
+    "sources": [
+      {
+        "title": "Sanctuary Evening Schedule 2026",
+        "type": "Verified Official Record"
+      }
+    ]
+  }
+]

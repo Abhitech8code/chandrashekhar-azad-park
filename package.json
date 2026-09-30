@@ -1,0 +1,25 @@
+{
+  "name": "chandrashekhar-azad-park",
+  "version": "1.0.0",
+  "description": "Interactive digital heritage and visitor information platform for Chandrashekhar Azad Park, Prayagraj.",
+  "main": "Backend/server.js",
+  "scripts": {
+    "start": "node Backend/server.js",
+    "dev": "node Backend/server.js --open",
+    "watch": "node --watch Backend/server.js"
+  },
+  "keywords": [
+    "azad-park",
+    "prayagraj",
+    "tourism",
+    "digital-heritage",
+    "3d-map",
+    "ticketing"
+  ],
+  "author": "Abhishek",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}

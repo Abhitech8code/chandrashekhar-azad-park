@@ -1,0 +1,17 @@
+{
+  "name": "Chandra Shekhar Azad Park • Prayagraj",
+  "short_name": "Azad Park",
+  "description": "Digital Heritage & Visitor Sanctuary Portal for Chandra Shekhar Azad Park, Prayagraj",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#06110b",
+  "theme_color": "#103122",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "Logo.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chandrashekhar Azad Park — Complete Project Architecture & System Flow Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'neutral',
+      themeVariables: {
+        primaryColor: '#103122',
+        primaryTextColor: '#ffffff',
+        primaryBorderColor: '#c99726',
+        lineColor: '#2d6a4f',
+        secondaryColor: '#f4ede2',
+        tertiaryColor: '#ffffff'
+      }
+    });
+  </script>
+  <style>
+    :root {
+      --primary: #103122;
+      --secondary: #1b4332;
+      --accent: #2d6a4f;
+      --gold: #c99726;
+      --bg: #f8faf9;
+      --card-bg: #ffffff;
+      --text: #1a2e26;
+      --muted: #526b60;
+      --border: #d8e2dc;
+      --code-bg: #0d2319;
+      --font-serif: 'Cinzel', serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 60px 70px;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--border);
+    }
+
+    /* Print Floating Action Bar */
+    .print-bar {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--primary);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 50px;
+      box-shadow: 0 8px 30px rgba(16, 49, 34, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: 1.5px solid var(--gold);
+      z-index: 99999;
+      transition: all 0.2s ease;
+    }
+    .print-bar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(16, 49, 34, 0.6);
+      background: var(--secondary);
+    }
+
+    /* Document Header */
+    .doc-header {
+      border-bottom: 3px double var(--gold);
+      padding-bottom: 30px;
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .doc-brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .doc-logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      object-fit: cover;
+    }
+    .doc-title-group h1 {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      color: var(--primary);
+      letter-spacing: 1px;
+      line-height: 1.2;
+    }
+    .doc-title-group p {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .meta-badge-box {
+      text-align: right;
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: #f1f5f3;
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .meta-badge-box strong { color: var(--primary); }
+
+    /* Section Styling */
+    h2 {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      color: var(--primary);
+      margin: 45px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    h3 {
+      font-size: 1.15rem;
+      color: var(--secondary);
+      margin: 24px 0 10px;
+    }
+    p { margin-bottom: 14px; font-size: 0.95rem; }
+    ul, ol { margin-left: 24px; margin-bottom: 18px; font-size: 0.95rem; }
+    li { margin-bottom: 6px; }
+
+    /* Mermaid Container */
+    .mermaid-box {
+      background: #fafcfb;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      margin: 24px 0;
+      text-align: center;
+      overflow-x: auto;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0 30px;
+      font-size: 0.9rem;
+    }
+    th, td {
+      padding: 12px 14px;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+    th {
+      background: #eef4f1;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    tr:nth-child(even) { background: #fbfdfc; }
+
+    /* Code & Callouts */
+    pre, code {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+    code {
+      background: #eef3f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--secondary);
+    }
+    pre {
+      background: var(--code-bg);
+      color: #e2f1ea;
+      padding: 18px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 16px 0;
+      line-height: 1.5;
+    }
+    .callout {
+      border-left: 4px solid var(--gold);
+      background: #fffcf4;
+      padding: 14px 18px;
+      margin: 18px 0;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.92rem;
+    }
+
+    /* Flow Step Card */
+    .step-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .step-card {
+      background: #fdfdfd;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      border-top: 3px solid var(--accent);
+    }
+    .step-num {
+      display: inline-block;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      text-align: center;
+      line-height: 26px;
+      font-size: 0.8rem;
+      margin-bottom: 8px;
+    }
+    .step-card h4 {
+      font-size: 0.96rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+    .step-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    /* Print Styles */
+    @media print {
+      body { background: #fff; padding: 0; }
+      .container {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .print-bar { display: none !important; }
+      h2 { page-break-before: always; margin-top: 20px; }
+      h2:first-of-type { page-break-before: avoid; }
+      .mermaid-box, table, pre { page-break-inside: avoid; }
+      a { text-decoration: none; color: inherit; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Print to PDF Button -->
+  <button class="print-bar" onclick="window.print()">
+    <i class="fa-solid fa-file-pdf"></i>
+    <span>Save / Print as PDF</span>
+  </button>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="doc-header">
+      <div class="doc-brand">
+        <img src="Logo.png" alt="Azad Park Official Seal" class="doc-logo" onerror="this.src='Logo%20Azad%20Park.png'">
+        <div class="doc-title-group">
+          <h1>CHANDRA SHEKHAR AZAD PARK</h1>
+          <p>System Architecture & End-to-End Project Flow Specification</p>
+        </div>
+      </div>
+      <div class="meta-badge-box">
+        <div><strong>Version:</strong> 2.0 (Production)</div>
+        <div><strong>Platform:</strong> Web / PWA / Serverless</div>
+        <div><strong>Developer:</strong> Abhishek (Abhitech8code)</div>
+        <div><strong>Generated:</strong> October 2026</div>
+      </div>
+    </header>
+
+    <!-- Section 1 -->
+    <section>
+      <h2><i class="fa-solid fa-compass"></i> 1. Executive Summary & Solution Architecture</h2>
+      <p>
+        The <strong>Chandra Shekhar Azad Park Digital Heritage & Visitor Platform</strong> is an independent, production-grade tourism and cultural preservation portal for the historic 133-acre sanctuary in Prayagraj, Uttar Pradesh. It combines real-time ambient telemetry, interactive isometric 3D mapping, dual-language audio chronicles, digital pass issuance with cryptographic QR tokens, and gatekeeper verification desks.
+      </p>
+
+      <div class="callout">
+        <strong>Core Architectural Philosophy:</strong> Zero external frameworks (Vanilla HTML/CSS/ES6+), extreme mobile responsiveness (zero horizontal scroll down to 320px), client-side offline resilience with Service Workers, and low-latency serverless API execution on Vercel Edge networks.
+      </div>
+
+      <div class="mermaid-box">
+        <div class="mermaid">
+graph TB
+    subgraph Client ["Client Browser Tier (Desktop, Tablet, Mobile)"]
+        UI["Main Portal (index.html)"]
+        MAP["3D Miniature Map (map.html)"]
+        SW["Offline Service Worker (sw.js)"]
+        CACHE["CacheStorage & LocalStorage"]
+    end
+
+    subgraph CDN ["Edge & Static Distribution (Vercel CDN)"]
+        V_STATIC["Static Assets (/Frontend)"]
+        V_REWRITE["vercel.json Routing Engine"]
+    end
+
+    subgraph Serverless ["Compute Tier (Vercel Serverless / Node.js)"]
+        V_API["Serverless Function (api/index.js)"]
+        EXPRESS["Express Application (Backend/server.js)"]
+        ROUTERS["REST API Routes (/api/...)"]
+    end
+
+    subgraph DataTier ["Persistence & Telemetry Services"]
+        JSON_STORE["Persistent JSON Store (Backend/data/)"]
+        WEATHER_API["Open-Meteo API (Prayagraj Weather & AQI)"]
+    end
+
+    UI -->|Asset Request| V_STATIC
+    MAP -->|Asset Request| V_STATIC
+    UI -->|Service Worker Registration| SW
+    SW -->|Cache Fallback| CACHE
+    UI -->|Live Telemetry Poll| WEATHER_API
+    UI -->|REST Operations| V_REWRITE
+    V_REWRITE -->|/api/* Rewrites| V_API
+    V_API --> EXPRESS
+    EXPRESS --> ROUTERS
+    ROUTERS --> JSON_STORE
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2 -->
+    <section>
+      <h2><i class="fa-solid fa-route"></i> 2. Complete End-to-End User Flow (Visitor Journey)</h2>
+      <p>
+        The platform facilitates a seamless end-to-end journey from online pre-visit planning to on-site exploration and post-visit feedback.
+      </p>
+
+      <div class="step-grid">
+        <div class="step-card">
+          <span class="step-num">1</span>
+          <h4>Discovery & Telemetry</h4>
+          <p>Visitor lands on portal. System assesses live IST clock, park gate open/close status, and Prayagraj ambient AQI & temperature.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">2</span>
+          <h4>3D Miniature Map</h4>
+          <p>Visitor enters the interactive 3D map, filters landmarks by category, inspects points of interest via bottom sheets, and triggers audio guides.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">3</span>
+          <h4>Audio Chronicle</h4>
+          <p>User listens to the narration of Chandra Shekhar Azad's 1931 martyrdom battle in English or Hindi with synchronized audio visualizer.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">4</span>
+          <h4>Digital Pass Booking</h4>
+          <p>Selects pass category (General, Morning Walker, Museum, Camera), calculates fees dynamically, and generates verified E-Pass with QR code.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">5</span>
+          <h4>Gate Verification</h4>
+          <p>At park gates (Gate 1 to 4), staff scans pass QR or enters reference code into the Staff Desk modal for cryptographic authentication.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">6</span>
+          <h4>Feedback Pulse</h4>
+          <p>Visitor submits 1-click sentiment rating and suggestion stored into the public review ledger.</p>
+        </div>
+      </div>
+
+      <div class="mermaid-box">
+        <div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor Visitor
+    participant Browser as Client Portal (index.html / map.html)
+    participant Telemetry as Open-Meteo API
+    participant Server as Express / Serverless API
+    participant DB as JSON Data Store
+    actor Staff as Gate Security Staff
+
+    Visitor->>Browser: Open Website
+    Browser->>Telemetry: Fetch Weather & AQI (Prayagraj 25.43°N, 81.84°E)
+    Telemetry-->>Browser: Temperature, Condition, AQI Score
+    Browser->>Server: GET /api/park/info
+    Server-->>Browser: Park Timings, Notices, Fees
+    
+    Visitor->>Browser: Select "Book E-Pass"
+    Visitor->>Browser: Fill Name, Date, Pass Type, Quantity
+    Browser->>Server: POST /api/tickets/book (Payload)
+    Server->>DB: Append Booking Record
+    Server-->>Browser: Return Booking JSON (Pass Ref AZP-XXXXXX, QR Data, Hash)
+    Browser->>Visitor: Render Printable Digital E-Pass & Modal View
+
+    Note over Visitor,Staff: On-Site Arrival at Gate 1, 2, 3, or 4
+    Visitor->>Staff: Present Digital Pass on Smartphone / Printout
+    Staff->>Browser: Open Gate Staff Desk (Ctrl+Shift+A)
+    Staff->>Browser: Enter Pass Ref or Scan QR Code
+    Browser->>Server: GET /api/tickets/verify/:ref
+    Server->>DB: Lookup Booking Ref & Cryptographic Token
+    Server-->>Browser: Authenticated Pass Details (Status: Valid)
+    Browser-->>Staff: Display Green Pass Card & Gate Entry Approval
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3 -->
+    <section>
+      <h2><i class="fa-solid fa-cube"></i> 3. Signature 3D Interactive Map Flow</h2>
+      <p>
+        The 3D interactive map (<code>Frontend/map.html</code>) serves as a digital miniature model of the park. It incorporates responsive layout adaptation, touch gestures, dynamic camera framing, and audio tour coordination.
+      </p>
+
+      <div class="mermaid-box">
+        <div class="mermaid">
+stateDiagram-v2
+    [*] --> MapLoading: Load map.html
+    MapLoading --> MapReady: Parse SVG Paths & Geometry
+    
+    state MapReady {
+        [*] --> OverviewMode
+        OverviewMode --> LandmarkFocus: Click / Tap Landmark Marker
+        LandmarkFocus --> AudioTourPlaying: Trigger Audio Chronicle
+        AudioTourPlaying --> LandmarkFocus: Audio Finished / Paused
+        LandmarkFocus --> OverviewMode: Reset Camera View
+    }
+
+    state MobileBottomSheet {
+        Peek: 1. Peek State (Preview pill & tag)
+        Half: 2. Half State (Key details & specs)
+        Expanded: 3. Expanded State (Full description, audio & highlights)
+
+        Peek --> Half: Touch Drag Up
+        Half --> Expanded: Touch Drag Up
+        Expanded --> Half: Touch Drag Down
+        Half --> Peek: Touch Drag Down / Tap Map
+    }
+
+    state LandscapeMode {
+        SplitLayout: 70% 3D Isometric Canvas | 30% Right Inspection Panel
+    }
+
+    MapReady --> MobileBottomSheet: Viewport <= 768px (Portrait)
+    MapReady --> LandscapeMode: Viewport <= 844px (Landscape)
+        </div>
+      </div>
+
+      <h3>3.1 Map Technical Features</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Mechanism</th>
+            <th>User Benefit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Isometric Projection</strong></td>
+            <td>Vector SVG styling with depth offsets, drop shadows, and 3D path transforms</td>
+            <td>Digital miniature look without high GPU/WebGL memory overhead</td>
+          </tr>
+          <tr>
+            <td><strong>Radar Tracking</strong></td>
+            <td>Proportional landmark pin layout overlaying miniature sanctuary radar</td>
+            <td>Instant geographical orientation of the 133-acre sanctuary</td>
+          </tr>
+          <tr>
+            <td><strong>Multi-Category Filters</strong></td>
+            <td>Real-time DOM attribute filtering (All, Heritage, Museums, Library, Flora, Promenades)</td>
+            <td>Instant discovery of specific heritage interests without page reloads</td>
+          </tr>
+          <tr>
+            <td><strong>Audio Chronicle Integration</strong></td>
+            <td>HTML5 Web Audio API with synchronized Hindi / English historical narration</td>
+            <td>Immersive museum-grade audio tour while exploring landmarks</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Section 4 -->
+    <section>
+      <h2><i class="fa-solid fa-ticket"></i> 4. Pass Booking & Verification Pipeline</h2>
+      <p>
+        The ticketing engine generates verifiable digital passes with unique reference identifiers and verification tokens.
+      </p>
+
+      <div class="mermaid-box">
+        <div class="mermaid">
+flowchart TD
+    A[Visitor Selects Pass Type] --> B{Enter Quantity & Date}
+    B --> C[Dynamic Price Calculation]
+    C --> D[Submit Booking Form]
+    D --> E[POST /api/tickets/book]
+    E --> F[Generate AZP-XXXXXX Reference Code]
+    F --> G[Generate SHA-256 Validation Hash]
+    G --> H[Generate QR Code Payload Data]
+    H --> I[Save to Backend/data/bookings.json]
+    I --> J[Return JSON Payload to Client]
+    J --> K[Render Printable E-Ticket Modal]
+    K --> L[Cache Pass to Browser LocalStorage]
+
+    M[Gate Security Staff Scans QR / Enters Ref] --> N[GET /api/tickets/verify/:ref]
+    N --> O{Match Found in DB?}
+    O -->|Yes| P[Validate Date & Security Hash]
+    P --> Q[Return Status: VALID]
+    Q --> R[Display Green Verified Badge & Attendee Count]
+    O -->|No| S[Return Status: INVALID]
+    S --> T[Display Red Warning: Fraudulent or Unknown Ticket]
+        </div>
+      </div>
+
+      <h3>4.1 Ticket Pricing Structure</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Pass Tier</th>
+            <th>Tariff</th>
+            <th>Validity</th>
+            <th>Privileges</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>General Day Pass</strong></td>
+            <td>₹15 / adult (Children < 5 Free)</td>
+            <td>Single Day Entry</td>
+            <td>Access to all lawns, trails, memorials, and fountain area</td>
+          </tr>
+          <tr>
+            <td><strong>Morning Walker Monthly</strong></td>
+            <td>₹120 / month</td>
+            <td>30 Days</td>
+            <td>Exclusive 05:00 AM – 08:30 AM fitness access across all gates</td>
+          </tr>
+          <tr>
+            <td><strong>Morning Walker Annual</strong></td>
+            <td>₹1,000 / year</td>
+            <td>365 Days</td>
+            <td>Year-round unlimited health trail and jogging track entry</td>
+          </tr>
+          <tr>
+            <td><strong>Museum Combined Pass</strong></td>
+            <td>₹50 / visitor</td>
+            <td>Single Day</td>
+            <td>Park entry + Allahabad National Museum galleries entry</td>
+          </tr>
+          <tr>
+            <td><strong>Professional Camera Permit</strong></td>
+            <td>₹100 / camera</td>
+            <td>Single Day</td>
+            <td>DSLR / Mirrorless photography authorization</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Section 5 -->
+    <section>
+      <h2><i class="fa-solid fa-server"></i> 5. REST API Architecture & Endpoints</h2>
+      <p>
+        The server exposes lightweight JSON endpoints designed for instant execution on Node.js and Vercel Serverless Functions.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Endpoint</th>
+            <th>Method</th>
+            <th>Parameters</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>/api/park/info</code></td>
+            <td><code>GET</code></td>
+            <td>None</td>
+            <td>Retrieves metadata, opening hours, gate notices, and emergency contacts</td>
+          </tr>
+          <tr>
+            <td><code>/api/attractions</code></td>
+            <td><code>GET</code></td>
+            <td><code>?category=...</code></td>
+            <td>Lists all monuments, pavilions, library, museum, and coordinates</td>
+          </tr>
+          <tr>
+            <td><code>/api/events</code></td>
+            <td><code>GET</code></td>
+            <td>None</td>
+            <td>Returns community yoga, heritage walks, and horticultural exhibitions</td>
+          </tr>
+          <tr>
+            <td><code>/api/reviews</code></td>
+            <td><code>GET</code> / <code>POST</code></td>
+            <td>JSON: author, rating, city, text</td>
+            <td>Reads visitor guestbook and accepts verified guestbook reviews</td>
+          </tr>
+          <tr>
+            <td><code>/api/feedback</code></td>
+            <td><code>GET</code> / <code>POST</code></td>
+            <td>JSON: sentiment, suggestion, category</td>
+            <td>Aggregates visitor sentiment metrics (great, good, okay, needs-improvement)</td>
+          </tr>
+          <tr>
+            <td><code>/api/tickets/book</code></td>
+            <td><code>POST</code></td>
+            <td>JSON: name, email, date, ticketType, quantity</td>
+            <td>Issues verifiable digital E-Pass with reference number and QR payload</td>
+          </tr>
+          <tr>
+            <td><code>/api/tickets/verify/:ref</code></td>
+            <td><code>GET</code></td>
+            <td>Path: <code>ref</code></td>
+            <td>Security verification endpoint validating ticket authenticity and entry status</td>
+          </tr>
+          <tr>
+            <td><code>/api/health</code></td>
+            <td><code>GET</code></td>
+            <td>None</td>
+            <td>System health, uptime, and server timestamp check</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Section 6 -->
+    <section>
+      <h2><i class="fa-solid fa-cloud-arrow-up"></i> 6. Vercel Cloud Routing & Edge Deployment</h2>
+      <p>
+        The project is structured for zero-configuration, continuous Git-integrated deployment via <code>vercel.json</code>.
+      </p>
+
+      <div class="mermaid-box">
+        <div class="mermaid">
+flowchart LR
+    REQ[HTTP Request from Client] --> ROUTE{URL Path Check}
+    ROUTE -->|/api/*| S_FUNC[Vercel Serverless Function: api/index.js]
+    S_FUNC --> APP[Express Engine: Backend/server.js]
+    APP --> JSON[JSON Response]
+
+    ROUTE -->|/| STAT_INDEX[Vercel Static: Frontend/index.html]
+    ROUTE -->|/map.html| STAT_MAP[Vercel Static: Frontend/map.html]
+    ROUTE -->|/assets/*, *.css, *.js| STAT_FILES[Vercel Static: Frontend/*]
+        </div>
+      </div>
+
+      <pre><code>{
+  "version": 2,
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index.js" },
+    { "source": "/", "destination": "/Frontend/index.html" },
+    { "source": "/map.html", "destination": "/Frontend/map.html" },
+    { "source": "/(.*)", "destination": "/Frontend/$1" }
+  ]
+}</code></pre>
+    </section>
+
+    <!-- Section 7 -->
+    <section>
+      <h2><i class="fa-solid fa-shield-halved"></i> 7. Security, Privacy & Performance Audits</h2>
+      <ul>
+        <li><strong>Zero Secrets in Version Control:</strong> Audited <code>.gitignore</code> preventing tracking of <code>.env</code>, private keys, database URLs, deployment tokens, and temporary files.</li>
+        <li><strong>Input Sanitization:</strong> Form inputs for bookings, reviews, and pulse suggestions are sanitized against XSS attacks.</li>
+        <li><strong>Responsive Resilience:</strong> Verified zero horizontal canvas overflow across all standard mobile and desktop viewports (320px, 375px, 390px, 768px, 1024px, 1440px).</li>
+        <li><strong>Offline Survivability:</strong> Service Worker caches essential assets for offline reading and wayfinding.</li>
+      </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--muted);">
+      <div>Chandrashekhar Azad Park Digital Heritage Project</div>
+      <div>Designed & Developed by <strong>Abhishek</strong> (GitHub: <a href="https://github.com/Abhitech8code" target="_blank" style="color: var(--gold); font-weight: 700;">Abhitech8code</a>)</div>
+    </footer>
+  </div>
+
+</body>
+</html>

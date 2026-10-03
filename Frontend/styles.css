@@ -907,11 +907,16 @@ img {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #fef08a 35%, var(--gold-primary) 70%, #ea580c 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #fffbeb 30%, #fef08a 70%, #facc15 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 3px 14px rgba(201, 151, 38, 0.65));
+  text-shadow: none !important;
+  filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.95)) 
+          drop-shadow(0 0 35px rgba(255, 255, 255, 0.8)) 
+          drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+  display: inline-block;
+  letter-spacing: 0.5px;
 }
 
 .hero-description {
